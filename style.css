@@ -22,17 +22,68 @@ body {
 .nav-menu {
     display: flex;
     justify-content: space-between;
+    align-items: center;
     background-color: lightgray;
-    padding: 0.5rem 1.5rem;
+    height: 60px;
+    padding: 0 1.5rem;
 }
 
-nav ul {
+.nav-links {
     display: flex;
+    height: 100%;
     list-style: none;
 }
 
-nav li {
-    padding-left: 1rem;
+.nav-links li {
+    height: 100%;
+    display: flex;
+    align-items: center;
+}
+
+.nav-links a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    padding: 0 1rem;
+    text-decoration: none;
+    color: #333;
+    font-weight: 500;
+    transition: background-color 0.3s ease;
+}
+
+.nav-links a:hover {
+    background-color: #555;
+    color: white;
+}
+
+.nav-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    padding: 0 1rem;
+    background: none;
+    border: none;
+    font-size: 1rem;
+    color: #333;
+    cursor: pointer;
+    font-weight: 500;
+    transition: background-color 0.3s ease;
+}
+
+.nav-button:hover {
+    background-color: #555;
+    color: white;
+}
+
+.nav-button:focus {
+    outline: none;
+}
+
+.nav-links li {
+    display: flex;
+    align-items: center;
 }
 
 /* main content */
@@ -42,9 +93,11 @@ main {
 }
 
 .headshot {
-    margin: 5rem;
+    margin: 1rem 2rem 1rem 1rem;
     max-width: 30vw;
     display: block;
+    flex-shrink: 0;
+    border-radius: 10px;
 }
 
 .flex-container {
@@ -58,6 +111,34 @@ main {
 .main-text {
     margin: 0.5rem;
     padding: 1rem;
+    flex: 1;
+    min-width: 300px;
+}
+
+.blog {
+    margin: 0.5rem;
+    padding: 1rem;
+}
+
+.project-button {
+    height: 5vh;
+    width: 8vw;
+    background: none;
+    border: none;
+    font-size: 1rem;
+    color: #333;
+    cursor: pointer;
+    font-weight: 500;
+    transition: background-color 0.3s ease;
+}
+
+.project-button:hover {
+    background-color: #555;
+    color: white;
+}
+
+.project-button:focus {
+    outline: none;
 }
 
 /* footer */
@@ -66,6 +147,8 @@ footer {
     background-color: lightgray;
     margin-top: 10vh;
     text-align: center;
+    padding: 1rem;
+    font-weight: bold;
 }
 
 .projects {
