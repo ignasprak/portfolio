@@ -92,6 +92,12 @@ main {
     flex: auto;
 }
 
+hr {
+    width: 50%;
+    text-align: left;
+    margin-left: 0
+}
+
 .headshot {
     margin: 1rem 2rem 1rem 1rem;
     max-width: 30vw;
@@ -118,27 +124,6 @@ main {
 .blog {
     margin: 0.5rem;
     padding: 1rem;
-}
-
-.project-button {
-    height: 5vh;
-    width: 8vw;
-    background: none;
-    border: none;
-    font-size: 1rem;
-    color: #333;
-    cursor: pointer;
-    font-weight: 500;
-    transition: background-color 0.3s ease;
-}
-
-.project-button:hover {
-    background-color: #555;
-    color: white;
-}
-
-.project-button:focus {
-    outline: none;
 }
 
 /* footer */
