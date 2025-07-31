@@ -15,6 +15,7 @@ body {
     max-width: 100%;
     overflow-x: hidden;
     box-sizing: border-box;
+    min-width: 350px;
 }
 
 /* navbar */
@@ -41,6 +42,7 @@ body {
 }
 
 .nav-links a {
+    font-size: large;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -48,7 +50,7 @@ body {
     padding: 0 1rem;
     text-decoration: none;
     color: #333;
-    font-weight: 500;
+    font-weight: bold;
     transition: background-color 0.3s ease;
 }
 
@@ -99,8 +101,9 @@ hr {
 }
 
 .headshot {
-    margin: 1rem 2rem 1rem 1rem;
-    max-width: 30vw;
+    margin: 2.5rem 2.5rem 0rem 2.5rem;
+    max-width: 50%;
+    height: 25rem;
     display: block;
     flex-shrink: 0;
     border-radius: 10px;
@@ -126,6 +129,44 @@ hr {
     padding: 1rem;
 }
 
+.projects {
+    padding: 1rem;
+    margin: 0.5rem;
+}
+
+.header-links-big,
+.header-links-small {
+    display: flex;
+    height: 100%;
+    width: fit-content;
+    text-decoration: none;
+    margin: 0;
+    font-weight: bold;
+    text-decoration: none;
+    color: #333;
+    font-weight: 500;
+    transition: background-color 0.3s ease;
+}
+
+.header-links-small {
+    padding: 0.25rem;
+}
+
+.header-links-big {
+    padding: 0.3rem;
+}
+
+.header-links-small:hover,
+.header-links-big:hover {
+    background-color: #555;
+    color: white;
+}
+
+.projects .header-links-small,
+.header-links-big {
+    margin-left: -0.25em;
+}
+
 /* footer */
 
 footer {
@@ -136,7 +177,111 @@ footer {
     font-weight: bold;
 }
 
-.projects {
-    margin: 0.5rem;
+/* special */
+
+.hamburger {
+    display: none;
+    position: absolute;
+    top: 0rem;
+    right: 1rem;
+    font-size: 2rem;
     padding: 1rem;
+    background: none;
+    border: none;
+    z-index: 9999;
+}
+
+/* screen adjustments */
+
+@media (max-width: 800px) {
+    .nav-menu {
+        flex-direction: column;
+        align-items: flex-start;
+        height: auto;
+        padding: 1rem;
+        position: relative;
+    }
+
+    .hamburger {
+        display: block;
+    }
+
+    .nav-left {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+    }
+
+    .nav-right {
+        width: 100%;
+        justify-content: center;
+        margin: 0.5rem 0;
+        margin-top: 1rem;
+    }
+
+    .nav-links {
+        display: none;
+        flex-direction: column;
+        width: 100%;
+        margin-top: 1rem;
+    }
+
+    .nav-links.show {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        margin-top: 3rem;
+    }
+
+    .nav-links li {
+        width: 100%;
+    }
+
+    .nav-links a {
+        padding: 1rem;
+        width: 100%;
+        text-align: left;
+    }
+
+    .nav-button {
+        width: 100%;
+        text-align: left;
+        padding: 1rem;
+    }
+
+    .flex-container {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .headshot {
+        margin: 2rem 0;
+        max-width: 80vw;
+    }
+
+    .main-text {
+        padding: 1rem;
+    }
+
+    .projects,
+    .blog {
+        padding: 1rem;
+        margin: 1rem 0;
+    }
+
+    h1 {
+        font-size: 2rem;
+    }
+
+    h2 {
+        font-size: 1.4rem;
+    }
+
+    h3 {
+        font-size: 1.25rem;
+    }
+
+    h4 {
+        font-size: 1rem;
+    }
 }
