@@ -122,7 +122,6 @@ hr {
     flex-wrap: wrap;
 }
 
-
 .main-text {
     margin: 0.5rem;
     flex: 1;
@@ -174,7 +173,8 @@ hr {
     margin-left: -0.25em;
 }
 
-.about {
+.about-text,
+.projects-text p {
     padding-right: 10%;
     font-size: x-large;
     line-height: 35px;
@@ -235,14 +235,45 @@ hr {
     bottom: 20px;
 }
 
-.card-component .__year {}
+.card-component .__year {
+    padding: 0.25rem;
+}
 
 .card-component .__title {
     font-size: 1em;
+    padding: 0.25rem;
 }
 
 .card-component .__text {
     color: gray;
+    padding: 0.25rem;
+}
+
+/* projects */
+
+.project-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.project-text {
+    flex: 1 1 50%;
+    min-width: 300px;
+}
+
+.project-image img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+}
+
+.project-image {
+    flex: 1 1 42.5%;
+    display: flex;
+    justify-content: flex-end;
 }
 
 /* footer */
@@ -269,12 +300,12 @@ footer {
     z-index: 9999;
 }
 
-.box-in {
+.box-in-intro {
     padding: 10%;
     padding-bottom: 5%;
 }
 
-.box-in2 {
+.box-in {
     padding: 2.5%;
     padding-left: 10%;
     padding-right: 10%;
