@@ -94,6 +94,14 @@ main {
     flex: auto;
 }
 
+h1 {
+    color: #333;
+}
+
+p {
+    font-size: large;
+}
+
 hr {
     width: 50%;
     text-align: left;
@@ -101,36 +109,31 @@ hr {
 }
 
 .headshot {
-    margin: 2.5rem 2.5rem 0rem 2.5rem;
-    max-width: 50%;
-    height: 25rem;
-    display: block;
-    flex-shrink: 0;
-    border-radius: 10px;
+    width: 30vw;
+    height: auto;
+    border-radius: 8px;
+    box-shadow: 2rem 2rem 1rem lightgray;
 }
 
-.flex-container {
+.about-container {
     display: flex;
+    align-items: flex-start;
+    gap: 20px;
     flex-wrap: wrap;
-    justify-content: space-between;
-    width: 100%;
-    max-width: 100%;
 }
+
 
 .main-text {
     margin: 0.5rem;
-    padding: 1rem;
     flex: 1;
     min-width: 300px;
 }
 
 .blog {
     margin: 0.5rem;
-    padding: 1rem;
 }
 
 .projects {
-    padding: 1rem;
     margin: 0.5rem;
 }
 
@@ -159,12 +162,87 @@ hr {
 .header-links-small:hover,
 .header-links-big:hover {
     background-color: #555;
+}
+
+.header-links-big:hover h1,
+.header-links-small:hover h2 {
     color: white;
 }
 
 .projects .header-links-small,
 .header-links-big {
     margin-left: -0.25em;
+}
+
+.about {
+    padding-right: 10%;
+    font-size: x-large;
+    line-height: 35px;
+}
+
+/* technology */
+
+.tech-boxes {
+    display: flex;
+    gap: 32px;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+}
+
+.tech-item {
+    display: flex;
+    align-items: center;
+    padding: 18px 28px;
+    border-radius: 10px;
+    background: #f5f5f5;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.07);
+    font-size: 1.35rem;
+}
+
+.tech-image {
+    width: 32px;
+    height: 32px;
+    margin-right: 14px;
+}
+
+/* work experience - credits to Christian4423 from stack overflow for this section */
+
+.list-component {
+    border-left: 1px solid gray;
+    list-style: none;
+    margin-left: 10px;
+}
+
+/* https://www.computerhope.com/issues/ch001705.htm */
+.list-component .__item {
+    background: url(https://www.computerhope.com/issues/pictures/bullet.gif) no-repeat top left;
+    background-position: top left;
+    padding: 0 0 4px 60px;
+    margin-left: 1em;
+    position: relative;
+    right: 67px;
+    margin-bottom: 10px;
+    top: 10px;
+}
+
+.card-component {
+    border: 1px solid gray;
+    border-radius: 5px;
+    padding: 1em;
+    max-width: 450px;
+    font-family: Arial;
+    position: relative;
+    bottom: 20px;
+}
+
+.card-component .__year {}
+
+.card-component .__title {
+    font-size: 1em;
+}
+
+.card-component .__text {
+    color: gray;
 }
 
 /* footer */
@@ -189,6 +267,17 @@ footer {
     background: none;
     border: none;
     z-index: 9999;
+}
+
+.box-in {
+    padding: 10%;
+    padding-bottom: 5%;
+}
+
+.box-in2 {
+    padding: 2.5%;
+    padding-left: 10%;
+    padding-right: 10%;
 }
 
 /* screen adjustments */
