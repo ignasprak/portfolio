@@ -31,10 +31,12 @@
             <li><a href="https://github.com/ignasprak">GitHub</a></li>
             <li><a href="https://www.linkedin.com/in/ignas-p-520086211/">LinkedIn</a></li>
             <li>
-                <button style="background-color: lightgrey;">
-                    <img src="media/dark-moon.png" style="width: 20%;">
+                <button class="dark-mode-toggle" id="darkModeToggle" aria-label="Toggle dark mode">
+                    <img id="themeIcon" src="media/dark-moon.png" alt="Toggle Dark Mode" />
                 </button>
+
             </li>
+
         </ul>
 
     </nav>
@@ -121,49 +123,76 @@
                     <img src="media/php.png" alt="PHP" class="tech-image">
                     <span>PHP</span>
                 </div>
+                <div class="tech-item">
+                    <img src="media/gh.png" alt="GitHub" class="tech-image">
+                    <span>GitHub</span>
+                </div>
             </div>
 
         </div>
 
-
         <!-- WORK EXPERIENCE -->
         <!-- credits to Christian4423 from stack overflow for this section -->
-        <div class="box-in main-text">
-            <h1>Work Experience</h1>
+        <div class="experience-wrapper">
+            <!-- LEFT: Work Experience -->
+            <section class="box-in main-text">
 
-            <br>
+                <h1 style="font-size: 2em;">Work Experience</h1>
+                <br>
+                <hr>
+                <br><br>
 
-            <hr>
+                <ul class="list-component">
+                    <li class="__item">
+                        <article class="card-component">
 
-            <br>
-            <br>
-            <ul class="list-component">
-                <li class="__item">
-                    <div class="card-component">
-                        <h2 class="__year">2022 - 2024</h2>
-                        <h1 class="__title">very important position</h1>
-                        <p class="__text">Lorem ipsum dolor sit amet consectetur adipiscing elit. Quisque faucibus ex
-                            sapien vitae pellentesque sem placerat. In id cursus mi pretium tellus duis convallis.
-                            Tempus leo eu aenean sed diam urna tempor. Pulvinar vivamus fringilla lacus nec metus
-                            bibendum egestas.</p>
-                    </div>
-                </li>
-                <li class="__item">
-                    <div class="card-component">
-                        <h2 class="__year">2020 - 2022</h2>
-                        <h1 class="__title">sorta important position</h1>
-                        <p class="__text">Lorem ipsum dolor sit amet consectetur adipiscing elit. Quisque faucibus ex
-                            sapien vitae pellentesque sem placerat. In id cursus mi pretium tellus duis convallis.
-                            Tempus leo eu aenean sed diam urna tempor. Pulvinar vivamus fringilla lacus nec metus
-                            bibendum egestas.</p>
-                    </div>
-                </li>
-            </ul>
+                            <h2 class="__year">January 2024 - August 2024</h2>
+                            <h1 class="__title">Centre of Expertise Intern - SAP</h1>
+                            <p class="__text">Lorem ipsum dolor sit amet consectetur adipiscing elit</p>
+                        </article>
+                    </li>
+                    <li class="__item">
+                        <article class="card-component">
+
+                            <h2 class="__year">April 2020 - January 2024</h2>
+                            <h1 class="__title">Seasonal Bar Supervisor - HAP Solutions</h1>
+                            <p class="__text">Lorem ipsum dolor sit amet consectetur adipiscing elit</p>
+                        </article>
+                    </li>
+                    <li class="__item">
+                        <article class="card-component">
+
+                            <h2 class="__year">Jun 2021 - Sep 2021 & Nov 2022 - Aug 2023</h2>
+                            <h1 class="__title">Store Assistant - Applegreen</h1>
+                            <p class="__text">Lorem ipsum dolor sit amet consectetur adipiscing elit</p>
+                        </article>
+                    </li>
+                    <li class="__item">
+                        <article class="card-component">
+
+                            <h2 class="__year">July 2020 - August 2020</h2>
+                            <h1 class="__title">Store Assistant - Ice Box</h1>
+                            <p class="__text">My first work experience was in an off-licence, my job was to keep
+                                everything in stock in store, and help customers with whatever they require.</p>
+                        </article>
+                    </li>
+                </ul>
+            </section>
+
+            <!-- RIGHT: CV Preview / Link -->
+            <div class="cv-panel">
+
+                <iframe src="media/IPcv.pdf" class="cv-preview" frameborder="0"></iframe>
+                <br>
+                <a class="cv-button" href="media/IPcv.pdf" target="_blank" rel="noopener noreferrer">Download CV
+                </a>
+            </div>
         </div>
+
 
         <!-- PROJECTS -->
 
-        <div class="box-in projects projects-text">
+        <div class="box-in projects project-text">
             <a href="/projects.html" class="header-links-big">
                 <h1>My Projects</h1>
             </a>
@@ -180,7 +209,7 @@
                         <h2>Explore Eire</h2>
                     </a>
 
-                    <p class="projects-text">This website aims to bridge the gap that is missing in the Irish tourism
+                    <p class="project-text">This website aims to bridge the gap that is missing in the Irish tourism
                         industry,
                         allowing users to search and visualise different attractions across Ireland, and to be able to
                         simply plan a
@@ -193,6 +222,14 @@
 
                     <h3>Technologies: </h3>
                     <p>Next.js, Supabase, TailwindCSS, OpenMaps, Vercel, Figma</p>
+
+                    <br>
+
+                    <a class="github-button" href="https://github.com/ignasprak/explore-eire" target="_blank"
+                        rel="noopener noreferrer">
+                        <img src="media/gh.png" alt="GitHub logo">
+                        <span>GitHub</span>
+                    </a>
                 </div>
 
                 <div class="project-image">
@@ -201,15 +238,18 @@
                 </div>
             </div>
 
+            <br>
 
-            <br> <br>
+            <hr style="width: 25%;">
+
+            <br>
 
             <a href="https://github.com/ignasprak/Insight-Eireann" class="header-links-small">
                 <h2>Insight Éireann</h2>
             </a>
             <br>
 
-            <p class="projects-text">This web dashbaord aims to give a simple understanding to Irish politics based on
+            <p class="project-text">This web dashboard aims to give a simple understanding to Irish politics based on
                 real-time data. It will act
                 as a portal for people who do not have time to keep up with the Irish political climate, and for those
                 that do not know how to approach the topic of Irish politics.</p>
@@ -219,22 +259,30 @@
 
             <br>
 
+            <a class="github-button" href="https://github.com/ignasprak/Insight-Eireann" target="_blank"
+                rel="noopener noreferrer">
+                <img src="media/gh.png" alt="GitHub logo">
+                <span>GitHub</span>
+            </a>
+
             <br>
 
-            <a href="/projects.html" class="header-links-small">
-                <h2>Find More?</h2>
+            <br> <br> <br>
+
+            <a class="github-button" href="/projects.html" target="_blank" rel="noopener noreferrer">
+                <span>More Projects?</span>
             </a>
 
         </div>
 
         <!-- BLOG -->
 
-        <div class="box-in blog">
+        <!-- <div class="box-in blog">
             <a href="/blog.html" class="header-links-big">
                 <h1>My Blog</h1>
             </a>
-            <p>Loading a most recent blog post template... ⏳</p>
-        </div>
+            <p>Loading the most recent blog post... ⏳</p>
+        </div> -->
 
 
     </main>

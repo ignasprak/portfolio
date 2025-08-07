@@ -24,8 +24,8 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background-color: lightgray;
-    height: 60px;
+    background-color: white;
+    height: 7.5vh;
     padding: 0 1.5rem;
 }
 
@@ -177,14 +177,14 @@ hr {
 .projects-text p {
     padding-right: 10%;
     font-size: x-large;
-    line-height: 35px;
+    line-height: 45px;
 }
 
 /* technology */
 
 .tech-boxes {
     display: flex;
-    gap: 32px;
+    gap: 28px;
     flex-wrap: wrap;
     justify-content: flex-start;
 }
@@ -192,7 +192,7 @@ hr {
 .tech-item {
     display: flex;
     align-items: center;
-    padding: 18px 28px;
+    padding: 12px 24px;
     border-radius: 10px;
     background: #f5f5f5;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.07);
@@ -205,6 +205,41 @@ hr {
     margin-right: 14px;
 }
 
+/* tech -> github */
+
+.github-button {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background-color: #f5f5f5;
+    border: 1px solid #ccc;
+    padding: 0.5rem 1rem;
+    border-radius: 6px;
+    text-decoration: none;
+    color: #333;
+    font-weight: 500;
+    font-size: large;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    width: fit-content;
+    width: 10vw;
+    text-align: center;
+}
+
+.github-button img {
+    height: 2rem;
+    width: auto;
+    margin-left: 1.5em;
+}
+
+.github-button:hover {
+    background-color: #333;
+    color: white;
+}
+
+.github-button:hover img {
+    filter: brightness(0) invert(1);
+}
+
 /* work experience - credits to Christian4423 from stack overflow for this section */
 
 .list-component {
@@ -212,6 +247,55 @@ hr {
     list-style: none;
     margin-left: 10px;
 }
+
+.experience-wrapper {
+    display: flex;
+    gap: 2rem;
+    align-items: flex-start;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+/* WE left */
+.box-in.main-text {
+    flex: 1 1 60%;
+}
+
+/* WE right */
+.cv-panel {
+    flex: 1 1 35%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.cv-button {
+    background-color: #333;
+    color: white;
+    padding: 0.75rem 1.25rem;
+    text-decoration: none;
+    border-radius: 6px;
+    font-weight: 600;
+    transition: background-color 0.3s ease;
+    margin-right: 25vw;
+    width: 10vw;
+    text-align: center;
+}
+
+.cv-button:hover {
+    background-color: #555;
+}
+
+.cv-preview {
+    width: 100%;
+    height: 70vh;
+    margin-right: 25vw;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    margin-top: 7.5rem;
+}
+
 
 /* https://www.computerhope.com/issues/ch001705.htm */
 .list-component .__item {
@@ -237,15 +321,16 @@ hr {
 
 .card-component .__year {
     padding: 0.25rem;
+    font-size: 1em;
 }
 
 .card-component .__title {
-    font-size: 1em;
+    font-size: 1.5em;
     padding: 0.25rem;
 }
 
 .card-component .__text {
-    color: gray;
+    color: rgb(43, 43, 43);
     padding: 0.25rem;
 }
 
@@ -298,10 +383,12 @@ footer {
     background: none;
     border: none;
     z-index: 9999;
+    color: black;
 }
 
 .box-in-intro {
     padding: 10%;
+    padding-top: 5%;
     padding-bottom: 5%;
 }
 
@@ -310,6 +397,143 @@ footer {
     padding-left: 10%;
     padding-right: 10%;
 }
+
+.dark-mode-toggle {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0.5rem;
+    border-radius: 50%;
+    transition: background-color 0.5s;
+    appearance: none;
+}
+
+.dark-mode-toggle:focus,
+.dark-mode-toggle:active {
+    outline: none;
+    box-shadow: none;
+    background: none;
+}
+
+/* special -> dark mode  */
+
+body {
+    background-color: #ffffff;
+    color: #333;
+    transition: background-color 0.5s ease, color 0.5s ease;
+}
+
+body.dark-mode {
+    background-color: #1e1e1e;
+    color: #f5f5f5;
+}
+
+.nav-menu {
+    background-color: #f0f0f0;
+}
+
+body.dark-mode .nav-menu {
+    background-color: #1e1e1e;
+}
+
+body.dark-mode .headshot {
+    width: 30vw;
+    height: auto;
+    border-radius: 8px;
+    box-shadow: 2rem 2rem 1rem rgb(38, 38, 38);
+}
+
+.dark-mode-toggle {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0.5rem;
+    border-radius: 50%;
+    transition: background-color 0.3s;
+}
+
+.dark-mode-toggle:hover {
+    background-color: rgba(0, 0, 0, 0.1);
+}
+
+.dark-mode-toggle img {
+    width: 24px;
+    height: 24px;
+    transition: opacity 0.3s;
+}
+
+body.dark-mode .box-in,
+body.dark-mode .box-in-intro {
+    background-color: #1e1e1e;
+    color: #f5f5f5;
+}
+
+body.dark-mode .card-component {
+    background-color: #2a2a2a;
+    border-color: #555;
+    color: #eee;
+}
+
+body.dark-mode .card-component .__text {
+    color: #ccc;
+}
+
+body.dark-mode .tech-item {
+    background-color: #2b2b2b;
+    color: #f0f0f0;
+    box-shadow: none;
+}
+
+body.dark-mode .github-button {
+    background-color: #2b2b2b;
+    border-color: #444;
+    color: #f0f0f0;
+}
+
+body.dark-mode .github-button:hover {
+    background-color: #555;
+    color: white;
+}
+
+body.dark-mode .cv-button {
+    background-color: #222;
+    color: #fff;
+}
+
+body.dark-mode .cv-button:hover {
+    background-color: #444;
+}
+
+body.dark-mode footer {
+    background-color: #1e1e1e;
+    color: #eee;
+}
+
+body.dark-mode hr {
+    border-color: #444;
+}
+
+body.dark-mode a,
+body.dark-mode h1 {
+    color: #ffffff;
+}
+
+body.dark-mode a:hover {
+    color: #fff;
+}
+
+body.dark-mode .list-component {
+    border-left: 1px solid #555;
+}
+
+body.dark-mode .__item {
+    background: none;
+}
+
+body.dark-mode .hamburger {
+    color: white;
+}
+
 
 /* screen adjustments */
 
@@ -322,51 +546,76 @@ footer {
         position: relative;
     }
 
+    .project-image {
+        display: none;
+    }
+
+    .cv-preview {
+        display: none;
+    }
+
+    .cv-button {
+        background-color: #eaeaea;
+        color: rgb(0, 0, 0);
+        padding: 5%;
+        width: 90%;
+        margin-left: 25%;
+        text-decoration: none;
+        border-radius: 6px;
+        font-weight: 600;
+        transition: background-color 0.3s ease;
+        text-align: center;
+    }
+
+    .cv-button:hover {
+        background-color: #555;
+    }
+
     .hamburger {
         display: block;
     }
 
-    .nav-left {
-        display: flex;
-        align-items: center;
-        gap: 1rem;
-    }
-
-    .nav-right {
-        width: 100%;
-        justify-content: center;
-        margin: 0.5rem 0;
-        margin-top: 1rem;
-    }
-
     .nav-links {
         display: none;
-        flex-direction: column;
+        flex-wrap: wrap;
         width: 100%;
         margin-top: 1rem;
+        gap: 0.75rem;
+        justify-content: center;
     }
 
     .nav-links.show {
         display: flex;
-        flex-direction: column;
-        width: 100%;
-        margin-top: 3rem;
     }
 
     .nav-links li {
-        width: 100%;
+        flex: 1 1 calc(33.33% - 1rem);
+        max-width: calc(33.33% - 1rem);
+        box-sizing: border-box;
+        text-align: center;
+        margin-bottom: 1rem;
     }
 
-    .nav-links a {
-        padding: 1rem;
+    .nav-links a,
+    .nav-links button {
+        display: block;
         width: 100%;
-        text-align: left;
+        height: 100%;
+        padding: 1rem;
+        font-size: 1rem;
+        background-color: black;
+        border: none;
+        text-decoration: none;
+        color: #000000;
+        border-radius: 6px;
+        transition: background-color 0.2s ease, color 0.2s ease;
+        background-color: #000000;
     }
 
-    .nav-button {
-        width: 100%;
-        text-align: left;
-        padding: 1rem;
+    .nav-links a:hover,
+    .nav-links button:hover {
+        background-color: #ddd;
+        color: black;
     }
 
     .flex-container {
@@ -377,6 +626,7 @@ footer {
     .headshot {
         margin: 2rem 0;
         max-width: 80vw;
+        display: none;
     }
 
     .main-text {
@@ -387,6 +637,16 @@ footer {
     .blog {
         padding: 1rem;
         margin: 1rem 0;
+    }
+
+    .about-text {
+        font-size: medium;
+        line-height: 2em;
+    }
+
+    p {
+        font-size: small;
+        line-height: 2em;
     }
 
     h1 {
@@ -404,4 +664,96 @@ footer {
     h4 {
         font-size: 1rem;
     }
+
+    .nav-menu {
+        flex-direction: column;
+        align-items: flex-start;
+        height: auto;
+        padding: 1rem;
+        position: relative;
+    }
+
+    .hamburger {
+        display: block;
+        font-size: 2rem;
+        background: none;
+        border: none;
+        cursor: pointer;
+    }
+
+    .nav-links {
+        display: none;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 0.5rem;
+        width: 100%;
+        margin-top: 1rem;
+    }
+
+    .nav-links.show {
+        display: flex;
+    }
+
+    .nav-links li {
+        flex: 1 1 calc(33.33% - 1rem);
+        max-width: calc(33.33% - 1rem);
+        box-sizing: border-box;
+        text-align: center;
+    }
+
+    .nav-links a,
+    .nav-links button {
+        display: block;
+        width: 100%;
+        padding: 1rem;
+        font-size: 1rem;
+        background-color: #ddd;
+        border: none;
+        text-decoration: none;
+        color: #333;
+        border-radius: 6px;
+        transition: background-color 0.2s ease;
+    }
+
+    .nav-links button {
+        padding: 0.5rem;
+    }
+
+    .nav-links a:hover,
+    .nav-links button:hover {
+        background-color: #ddd;
+    }
+
+    .dark-mode-toggle img {
+        width: 2rem;
+        height: 2rem;
+    }
+
+    .github-button {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        background-color: #f5f5f5;
+        border: 1px solid #ccc;
+        border-radius: 6px;
+        text-decoration: none;
+        color: #333;
+        margin-left: 2vw;
+        font-weight: 500;
+        font-size: x-large;
+        transition: background-color 0.3s ease, color 0.3s ease;
+        width: 95%;
+        display: flex;
+        justify-content: center;
+        /* Horizontal */
+        align-items: center;
+        /* Vertical */
+        height: 7.5vh;
+    }
+
+    .github-button img {
+        height: 2rem;
+        width: auto;
+    }
+
 }
