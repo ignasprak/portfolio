@@ -494,8 +494,11 @@ body.dark-mode .github-button:hover {
 }
 
 body.dark-mode .cv-button {
-    background-color: #222;
+    background-color: #2B2B2B;
     color: #fff;
+    border: 1px solid;
+    border-color: #444;
+    border-radius: 6px;
 }
 
 body.dark-mode .cv-button:hover {
