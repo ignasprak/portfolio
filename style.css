@@ -531,6 +531,58 @@ body.dark-mode .hamburger {
     color: white;
 }
 
+/* projects list */
+
+#repos {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 20px;
+}
+
+.repo {
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.repo:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 14px rgba(0, 0, 0, 0.1);
+}
+
+.repo h3 {
+    margin-top: 0;
+    font-size: 1.2em;
+}
+
+.repo h3 a {
+    text-decoration: none;
+    color: #0366d6;
+}
+
+.repo p {
+    font-size: 0.95em;
+    color: #555;
+    margin: 8px 0 12px;
+}
+
+.repo small {
+    display: flex;
+    align-items: center;
+    font-size: 0.8em;
+    color: #666;
+}
+
+.lang-dot {
+    height: 10px;
+    width: 10px;
+    border-radius: 50%;
+    display: inline-block;
+    margin-right: 6px;
+}
+
 
 /* screen adjustments */
 
