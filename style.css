@@ -310,7 +310,8 @@ hr {
     border: 1px solid gray;
     border-radius: 5px;
     padding: 1em;
-    max-width: 450px;
+    max-width: 30vw;
+    min-width: 275px;
     font-family: Arial;
     position: relative;
     bottom: 20px;
@@ -585,22 +586,20 @@ body.dark-mode .hamburger {
 
 
 /* screen adjustments */
-
-@media (max-width: 800px) {
-    .nav-menu {
-        flex-direction: column;
-        align-items: flex-start;
-        height: auto;
-        padding: 1rem;
-        position: relative;
-    }
-
-    .project-image {
-        display: none;
-    }
-
+@media (max-width: 950px) {
     .cv-preview {
         display: none;
+    }
+
+    .card-component {
+        border: 1px solid gray;
+        border-radius: 5px;
+        padding: 1em;
+        max-width: 65vw;
+        min-width: 275px;
+        font-family: Arial;
+        position: relative;
+        bottom: 20px;
     }
 
     .cv-button {
@@ -614,6 +613,21 @@ body.dark-mode .hamburger {
         font-weight: 600;
         transition: background-color 0.3s ease;
         text-align: center;
+    }
+
+}
+
+@media (max-width: 800px) {
+    .nav-menu {
+        flex-direction: column;
+        align-items: flex-start;
+        height: auto;
+        padding: 1rem;
+        position: relative;
+    }
+
+    .project-image {
+        display: none;
     }
 
     .cv-button:hover {
