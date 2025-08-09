@@ -10,7 +10,7 @@ import subprocess
 # === CONFIG ===
 OBSIDIAN_DAILY_NOTES = "/Users/ignasprakapas/Documents/Life/daily_notes"
 SITE_REPO = "/Users/ignasprakapas/Coding Projects/portfolio"
-BLOG_FOLDER = SITE_REPO 
+BLOG_FOLDER = os.path.join(SITE_REPO, "blogs")
 GIT_BRANCH = "main"
 PROCESS_DELAY = 10  # seconds to wait before reading file after detection
 
@@ -24,7 +24,7 @@ class NewNoteHandler(FileSystemEventHandler):
             print(f"⚠ File {filepath} no longer exists — skipping.")
             return
 
-        # Extract YAML frontmatter if exists
+        # extract YAML frontmatter if exists
         if content.startswith("---"):
             parts = content.split("---", 2)
             frontmatter = yaml.safe_load(parts[1]) or {}
@@ -34,10 +34,10 @@ class NewNoteHandler(FileSystemEventHandler):
             title = os.path.basename(filepath)
             body = content
 
-        # Convert markdown to HTML
+        # convert to HTML
         html_body = markdown.markdown(body)
 
-        # Wrap in basic HTML template
+        # wrap in basic HTML template
         html_content = f"""<!DOCTYPE html>
 <html>
 <head>
@@ -51,6 +51,10 @@ class NewNoteHandler(FileSystemEventHandler):
 </body>
 </html>
 """
+        # save in blog folder
+        date_str = datetime.now().strftime("%Y-%m-%d")
+        filename = f"{date_str}.html"
+        output_path = os.path.join(BLOG_FOLDER, filename)
 
         with open(output_path, "w", encoding="utf-8") as f:
             f.write(html_content)
@@ -61,7 +65,7 @@ class NewNoteHandler(FileSystemEventHandler):
         publish = input(f"publish '{title}' to GitHub? (y/n): ").strip().lower()
         if publish == "y":
             subprocess.run(["git", "-C", SITE_REPO, "add", "."])
-            subprocess.run(["git", "-C", SITE_REPO, "commit", "-m", f"Add daily note {date_str}"])
+            subprocess.run(["git", "-C", SITE_REPO, "commit", "-m", f"add daily note {date_str}"])
             subprocess.run(["git", "-C", SITE_REPO, "push", "origin", GIT_BRANCH])
             print("post published")
         else:
