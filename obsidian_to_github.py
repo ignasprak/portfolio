@@ -18,7 +18,7 @@ GIT_BRANCH = "main"
 class NewNoteHandler(FileSystemEventHandler):
 
     def process_file(self, filepath):
-        time.sleep(1)  # wait for Obsidian to finish saving
+        time.sleep(10)  # wait for Obsidian to finish saving
         try:
             with open(filepath, "r", encoding="utf-8") as f:
                 content = f.read()
