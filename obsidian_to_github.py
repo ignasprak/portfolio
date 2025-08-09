@@ -7,6 +7,7 @@ from watchdog.observers import Observer
 from watchdog.events import FileSystemEventHandler
 from datetime import datetime
 import subprocess
+import time
 
 # === CONFIG ===
 OBSIDIAN_DAILY_NOTES = "/Users/ignasprakapas/Documents/Life/daily_notes"
@@ -15,6 +16,16 @@ BLOG_FOLDER = SITE_REPO
 GIT_BRANCH = "main"
 
 class NewNoteHandler(FileSystemEventHandler):
+
+    def process_file(self, filepath):
+        time.sleep(1)  # wait for Obsidian to finish saving
+        try:
+            with open(filepath, "r", encoding="utf-8") as f:
+                content = f.read()
+        except FileNotFoundError:
+            print(f"File {filepath} no longer exists — skipping.")
+            return
+
     def on_created(self, event):
         if not event.is_directory and event.src_path.endswith(".md"):
             print(f"New note detected: {event.src_path}")
