@@ -11,7 +11,6 @@ import subprocess
 # === CONFIG ===
 OBSIDIAN_DAILY_NOTES = "/Users/ignasprakapas/Documents/Life/daily_notes"
 SITE_REPO = "/Users/ignasprakapas/Coding Projects/portfolio"
-BLOG_FOLDER = os.path.join(SITE_REPO, "blogs")
 BLOG_INDEX_FILE = os.path.join(SITE_REPO, "blog_posts.json")
 BLOG_HTML_FILE = os.path.join(SITE_REPO, "blog.html")
 GIT_BRANCH = "main"
@@ -32,14 +31,20 @@ class NewNoteHandler(FileSystemEventHandler):
 
     def update_blog_html(self, posts):
         """Update the blog.html file with the latest posts"""
-        # Generate HTML for blog posts
+        # Generate HTML for blog posts with full content
         posts_html = ""
-        for post in sorted(posts, key=lambda x: x['date'], reverse=True):
+        for post in sorted(posts, key=lambda x: x.get('date', ''), reverse=True):
+            # Skip posts that don't have the required fields
+            if not all(key in post for key in ['title', 'date', 'html_content']):
+                continue
+                
             posts_html += f"""
             <article class="blog-post">
-                <h2><a href="blogs/{post['filename']}">{post['title']}</a></h2>
+                <h2>{post['title']}</h2>
                 <p class="post-date">{post['date']}</p>
-                <p class="post-excerpt">{post.get('excerpt', '')}</p>
+                <div class="post-content">
+                    {post['html_content']}
+                </div>
             </article>
             """
 
@@ -103,57 +108,46 @@ class NewNoteHandler(FileSystemEventHandler):
 
         # convert to HTML
         html_body = markdown.markdown(body)
-
-        # wrap in basic HTML template
-        html_content = f"""<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="utf-8">
-    <title>{title}</title>
-    <link rel="stylesheet" href="/styles.css">
-    <style>
-        .back-link {{ margin-bottom: 20px; }}
-        .back-link a {{ text-decoration: none; color: #666; }}
-        .back-link a:hover {{ color: #333; }}
-    </style>
-</head>
-<body>
-<div class="back-link">
-    <a href="/blog.html">← Back to Blog</a>
-</div>
-<h1>{title}</h1>
-{html_body}
-</body>
-</html>
-"""
         
-        # save in blog folder
+        # get date
         date_str = datetime.now().strftime("%Y-%m-%d")
-        filename = f"{date_str}-{title.lower().replace(' ', '-')}.html"
-        output_path = os.path.join(BLOG_FOLDER, filename)
-
-        # ensure blog folder exists
-        os.makedirs(BLOG_FOLDER, exist_ok=True)
-
-        with open(output_path, "w", encoding="utf-8") as f:
-            f.write(html_content)
-
-        print(f"saved post to {output_path}")
+        
+        print(f"processed post: {title}")
 
         # update blog index
         posts = self.load_blog_index()
         
-        # check if post already exists (for updates)
-        existing_post = next((p for p in posts if p['filename'] == filename), None)
+        # create unique identifier for post (using title and date)
+        post_id = f"{date_str}-{title.lower().replace(' ', '-')}"
+        
+        # check if post already exists (for updates) - handle both old and new formats
+        existing_post = None
+        for post in posts:
+            # Check for new format with 'id'
+            if 'id' in post and post['id'] == post_id:
+                existing_post = post
+                break
+            # Check for old format with 'filename' (convert to new format)
+            elif 'filename' in post and post.get('title') == title:
+                existing_post = post
+                # Convert old format to new format
+                post['id'] = post_id
+                if 'filename' in post:
+                    del post['filename']
+                if 'excerpt' in post:
+                    del post['excerpt']
+                break
+        
         if existing_post:
             existing_post['title'] = title
-            existing_post['excerpt'] = excerpt
+            existing_post['html_content'] = html_body
+            existing_post['date'] = date_str
         else:
             posts.append({
+                'id': post_id,
                 'title': title,
-                'filename': filename,
                 'date': date_str,
-                'excerpt': excerpt
+                'html_content': html_body
             })
 
         self.save_blog_index(posts)
