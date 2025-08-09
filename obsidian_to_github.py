@@ -40,8 +40,12 @@ class NewNoteHandler(FileSystemEventHandler):
                 
             posts_html += f"""
             <article class="blog-post">
+                <hr>
+                <br>
                 <h2>{post['title']}</h2>
+                <br>
                 <p class="post-date">{post['date']}</p>
+                <br>
                 <div class="post-content">
                     {post['html_content']}
                 </div>
