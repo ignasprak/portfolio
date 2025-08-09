@@ -14,7 +14,7 @@ SITE_REPO = "/Users/ignasprakapas/Coding Projects/portfolio"
 BLOG_INDEX_FILE = os.path.join(SITE_REPO, "blog_posts.json")
 BLOG_HTML_FILE = os.path.join(SITE_REPO, "blog.html")
 GIT_BRANCH = "main"
-PROCESS_DELAY = 1  # seconds to wait before reading file after detection
+PROCESS_DELAY = 5  # seconds to wait before reading file after detection
 
 class NewNoteHandler(FileSystemEventHandler):
     def load_blog_index(self):
@@ -46,6 +46,7 @@ class NewNoteHandler(FileSystemEventHandler):
                     {post['html_content']}
                 </div>
             </article>
+            <br> <br>
             """
 
         # Read existing blog.html template or create basic one
