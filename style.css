@@ -413,6 +413,10 @@ footer {
     background: none;
 }
 
+code {
+    background-color: #c0c0c06f;
+}
+
 /* special -> dark mode  */
 
 body {

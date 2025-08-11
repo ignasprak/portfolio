@@ -47,215 +47,359 @@
         <br> <br>
         <!-- BLOG_POSTS_START -->
 
-        <article class="blog-post">
+        <article>
             <hr>
+
             <br>
-            <h2>DataTalksClub - Day 1</h2>
+
+            <h1>DataTalksClub - Day 1</h1>
+
+            <p><strong>Date:</strong> 2025-08-11</p>
+
             <br>
-            <p class="post-date">2025-08-11</p>
+
+            <h2>#dataengineering #datatalksclub</h2>
+
             <br>
-            <div class="post-content">
-                <h1>#dataengineering #datatalksclub</h1>
-                <h1>Intro to Docker (1.2.1)</h1>
-                <p>ci/cd is not covered in the course, make sure to look at this in a later date</p>
-                <p>docker is useful, because
-                    - local experimentation
-                    - integration testing (CI/CD)
-                    - reproducibility
-                    - running pipelines on the cloud (AWS batch, kubernetes)
-                    - Spark (defining data pipelines, used to define dependencies)
-                    - Serverless (AWS Lambda, processing data one record at a time)</p>
-                <h2>Docker Basics:</h2>
-                <p><code>docker run -it ubuntu bash</code></p>
-                <ul>
-                    <li>docker is the base command for using docker</li>
-                    <li>run means to execute an image </li>
-                    <li>-it means to run in an interactive terminal</li>
-                    <li>ubuntu means the name of the image we want to run</li>
-                    <li>bash means the command we want to execute in this image (parameter)
-                        running this image and deleting everything and running it again returns it to its original state
-                        because it is isolated</li>
-                </ul>
-                <p><code>docker run -it python:3.9</code></p>
-                <ul>
-                    <li>python is the name of the image</li>
-                    <li>3.9 is the tech, otherwise known as the version</li>
-                </ul>
-                <p><code>docker run -it --entrypoint=bash python:3.9</code>
-                    in order to install modules, we can use pip install pandas, but in order to do this we need to go to
-                    a bash terminal since we cannot do this in python</p>
-                <h2>Docker in VSC</h2>
-                <p>when we are creating our own container we need specifications for our dockerfile, so we start with
-                    the base image</p>
-                <p>in this case it would be:
-                    <code>FROM python:3.9</code>
+
+            <h2>Intro to Docker (1.2.1)</h2>
+
+            <br>
+
+            <blockquote>
+                <p><strong>Note:</strong> CI/CD is not covered in the course, make sure to look at this in a later date
                 </p>
-                <p>then we can do a run command which would be
-                    <code>RUN pip install pandas</code>
-                </p>
-                <p>since we can only install pandas in bash and not python we do:
-                    <code>ENTRYPOINT [ "bash" ]</code>
-                </p>
-                <p>in order to build this image from VSC, using the docker file we do:
-                    <code>docker build -t test:pandas .</code>
-                </p>
-                <ul>
-                    <li>build tells docker to build the image</li>
-                    <li>. means to build it in the current directory</li>
-                </ul>
-                <p>then when that is done, you can run it by using (which will being you into the bash terminal):
-                    <code>docker run -it test:pandas</code>
-                </p>
-                <h2>Data Pipeline</h2>
-                <p>We can now create a python file (.py)</p>
-                <p>we can type in:
-                    <code>import pandas as pd</code>
-                    whatever fancy stuff it will be doing
-                    <code>print('yay job done')</code>
-                </p>
-                <p>then in our docker file we add:
-                    <code>COPY pipeline.py pipeline.py</code>
-                    which copies the file to docker container
-                </p>
-                <p>and we can specify the work directory:
-                    <code>WORKDIR /app</code>
-                </p>
-                <p>now you run the container, and go into the python terminal and you can do pipeline.py when you are in
-                    the working directory</p>
-                <h3>Data Pipeline - Automation</h3>
-                <p>to the pipeline file we add:
-                    <code>import sys</code>
-                    <code>print(sys.argv)</code>
-                    <code>day = sys.argv[1]</code>
-                    <code>print(f'job done good for day = {day}')</code>
-                </p>
-                <p>then in the docker file we do:
-                    <code>ENTRYPOINT [ "python", "pipeline.py" ]</code>
-                </p>
-                <p>you build the container, and then run it:
-                    <code>docker run -it test:pandas 2025-08-10</code>
-                </p>
-                <p>this is how paramterise the data pipeline scripts
-                    <code>docker run -it test:pandas 2025-08-10 123 hello</code>
-                </p>
-                <h1>Ingesting NY Taxi Data to Postgres (1.2.2)</h1>
-                <h3>docker compose</h3>
-                <ul>
-                    <li>we have environment variables, we use a -e flag for this (postgres_user/password/db)</li>
-                    <li>we have volumes (a way of mapping folder in host machine file system to a folder in a
-                        container), this is called mounting, we use a -v flag for this (needs a full path on window
-                        machines) ((for mac you can do in the example $(pwd)/blahblahblah))</li>
-                    <li>we also need to specify a port on our host machine to a port on the container (needed to send a
-                        request to the db, we use a -p for this (5432:5432)</li>
-                </ul>
-                <p>from the tutorial section we put the code into the terminal to run it
-                    <code>docker run -it \</code>
-                    <code>-e POSTGRES_USER="root" \</code>
-                    <code>-e POSTGRES_PASSWORD="root" \</code>
-                    <code>-e POSTGRES_DB="ny_taxi" \</code>
-                    <code>-v "/Users/ignasprakapas/Coding Projects/data-engineering/data-engineering-zoomcamp/01-docker-terraform/2_docker_sql/ny_taxi_postgres_data":/var/lib/postgresql/data \</code>
-                    <code>-p 5432:5432 \</code>
-                    <code>postgres:13</code>
-                    Now we want to access the database (pip install pgcli)
-                    <code>pgcli -h localhost -p 5432 -u root -d ny_taxi</code>
-                </p>
-                <p>sometimes the port 5432 is already in use by a previous container, so on mac we do
-                    <code>sudo lsof -i -P | grep LISTEN | grep :$PORT</code> to list the ports in use and then do
+            </blockquote>
+
+            <br>
+
+            <p><strong>Docker is useful because:</strong></p>
+            <ul>
+                <li>Local experimentation</li>
+                <li>Integration testing (CI/CD)</li>
+                <li>Reproducibility</li>
+                <li>Running pipelines on the cloud (AWS batch, kubernetes)</li>
+                <li>Spark (defining data pipelines, used to define dependencies)</li>
+                <li>Serverless (AWS Lambda, processing data one record at a time)</li>
+            </ul>
+
+            <br>
+
+            <h3>Docker Basics</h3>
+
+            <p><code>docker run -it ubuntu bash</code></p>
+            <ul>
+                <li><strong>docker</strong> is the base command for using docker</li>
+                <li><strong>run</strong> means to execute an image</li>
+                <li><strong>-it</strong> means to run in an interactive terminal</li>
+                <li><strong>ubuntu</strong> means the name of the image we want to run</li>
+                <li><strong>bash</strong> means the command we want to execute in this image (parameter)</li>
+            </ul>
+
+            <blockquote>
+                <p>Running this image and deleting everything and running it again returns it to its original state
+                    because it is isolated</p>
+            </blockquote>
+
+            <p><code>docker run -it python:3.9</code></p>
+            <ul>
+                <li><strong>python</strong> is the name of the image</li>
+                <li><strong>3.9</strong> is the tag, otherwise known as the version</li>
+            </ul>
+
+            <p><code>docker run -it --entrypoint=bash python:3.9</code></p>
+            <p>In order to install modules, we can use <code>pip install pandas</code>, but in order to do this we need
+                to go to a bash terminal since we cannot do this in python</p>
+
+            <br>
+
+            <h3>Docker in VSCode</h3>
+
+            <p>When we are creating our own container we need specifications for our dockerfile, so we start with the
+                base image:</p>
+
+            <pre><code>FROM python:3.9</code></pre>
+
+            <p>Then we can do a run command:</p>
+
+            <pre><code>RUN pip install pandas</code></pre>
+
+            <p>Since we can only install pandas in bash and not python we do:</p>
+
+            <pre><code>ENTRYPOINT [ "bash" ]</code></pre>
+
+            <p>In order to build this image from VSCode, using the docker file we do:</p>
+
+            <pre><code>docker build -t test:pandas .</code></pre>
+
+            <ul>
+                <li><strong>build</strong> tells docker to build the image</li>
+                <li><strong>.</strong> means to build it in the current directory</li>
+            </ul>
+
+            <p>Then when that is done, you can run it by using (which will bring you into the bash terminal):</p>
+
+            <pre><code>docker run -it test:pandas</code></pre>
+
+            <br>
+
+            <h3>Data Pipeline</h3>
+
+            <p>We can now create a python file (.py):</p>
+
+            <pre><code>import pandas as pd
+# whatever fancy stuff it will be doing
+print('yay job done')</code></pre>
+
+            <p>Then in our docker file we add:</p>
+
+            <pre><code>COPY pipeline.py pipeline.py</code></pre>
+
+            <p>Which copies the file to docker container</p>
+
+            <p>And we can specify the work directory:</p>
+
+            <pre><code>WORKDIR /app</code></pre>
+
+            <p>Now you run the container, and go into the python terminal and you can do <code>pipeline.py</code> when
+                you are in the working directory</p>
+
+            <h4>Data Pipeline - Automation</h4>
+
+            <p>To the pipeline file we add:</p>
+
+            <pre><code>import sys
+print(sys.argv)
+day = sys.argv[1]
+print(f'job done good for day = {day}')</code></pre>
+
+            <p>Then in the docker file we do:</p>
+
+            <pre><code>ENTRYPOINT [ "python", "pipeline.py" ]</code></pre>
+
+            <p>You build the container, and then run it:</p>
+
+            <pre><code>docker run -it test:pandas 2025-08-10</code></pre>
+
+            <p>This is how to parameterize the data pipeline scripts:</p>
+
+            <pre><code>docker run -it test:pandas 2025-08-10 123 hello</code></pre>
+
+            <br>
+
+            <hr>
+
+            <br>
+
+            <h2>Ingesting NY Taxi Data to Postgres (1.2.2)</h2>
+
+            <br>
+
+            <h3>Docker Compose</h3>
+
+            <p>We need to set up:</p>
+            <ul>
+                <li><strong>Environment variables</strong> - we use a <code>-e</code> flag for this
+                    (postgres_user/password/db)</li>
+                <li><strong>Volumes</strong> - a way of mapping folder in host machine file system to a folder in a
+                    container (this is called mounting) - we use a <code>-v</code> flag for this (needs a full path on
+                    Windows machines, for Mac you can do <code>$(pwd)/blahblahblah</code>)</li>
+                <li><strong>Ports</strong> - we need to specify a port on our host machine to a port on the container
+                    (needed to send a request to the db) - we use a <code>-p</code> flag for this (5432:5432)</li>
+            </ul>
+
+            <p>From the tutorial section we put the code into the terminal to run it:</p>
+
+            <pre><code>docker run -it \
+  -e POSTGRES_USER="root" \
+  -e POSTGRES_PASSWORD="root" \
+  -e POSTGRES_DB="ny_taxi" \
+  -v "/Users/ignasprakapas/Coding Projects/data-engineering/data-engineering-zoomcamp/01-docker-terraform/2_docker_sql/ny_taxi_postgres_data":/var/lib/postgresql/data \
+  -p 5432:5432 \
+  postgres:13</code></pre>
+
+            <p>Now we want to access the database (pip install pgcli):</p>
+
+            <pre><code>pgcli -h localhost -p 5432 -u root -d ny_taxi</code></pre>
+
+            <blockquote>
+                <p><strong>Tip:</strong> Sometimes the port 5432 is already in use by a previous container, so on Mac we
+                    do <code>sudo lsof -i -P | grep LISTEN | grep :$PORT</code> to list the ports in use and then do
                     <code>sudo kill -9 (PID)</code>
                 </p>
-                <p>when we are in the container using pgcli, we can do:
-                    <code>\dt</code> - to list the tables in there
-                </p>
-                <p>we are going to use jupyter now, to install we can do <code>pip install jupyter</code></p>
-                <p>then we can do jupyter notebook</p>
-                <p>.parquet and not .csv anymore -&gt; just replace read_csv with read_parquet and remove the nrows
-                    argument</p>
-                <p>when looking at a .csv file you can look at it by using the <code>less</code> command</p>
-                <p>some handy data commands
-                    - head -n 100 xyz.csv &gt; xyz_head.csv = means get the top 100 lines and convert that into a new
-                    file
-                    - wc -l xyz.csv = counts the amount of rows in the .csv file, the -l specifies lines</p>
-                <p>the dataset:
-                    https://d37ci6vzurychx.cloudfront.net/trip-data/yellow_tripdata_2021-01.parquet</p>
-                <p>for the dataset we are using they also have documentation about it:
-                    https://www.nyc.gov/assets/tlc/downloads/pdf/data_dictionary_trip_records_yellow.pdf</p>
-                <p>there is also a zone id .csv file
-                    <a href="https://d37ci6vzurychx.cloudfront.net/misc/taxi_zone_lookup.csv">Taxi Zone Lookup Table</a>
-                </p>
-                <p>So since the file was in .parquet file and not .csv file, we had to use .parquet and work with that
-                    in jupyter</p>
-                <p><code>import pandas as pd</code>
-                    <code>!pip install pyarrow</code>
-                    <code>import urllib.request</code>
-                    <code>import pyarrow.parquet as pq</code>
-                </p>
-                <p><code>url = 'https://d37ci6vzurychx.cloudfront.net/trip-data/yellow_tripdata_2021-01.parquet'</code>
-                    <code>filename = 'yellow_tripdata_2021-01.parquet'</code>
-                    <code>urllib.request.urlretrieve(url, filename)</code>
-                    <code>print("File downloaded")</code>
-                </p>
-                <p><code>parquet_file = pq.ParquetFile(filename)</code>
-                    <code>trips_df = parquet_file.read(use_pandas_metadata=True).slice(0, 100).to_pandas()</code>
-                </p>
-                <p><code>trips_df</code></p>
-                <p>Now we want to put this data into our postgres, and to start off we need to turn this into a schema,
-                    first we make this into a data definition language (which is used for specifying schemas in sql)</p>
-                <p><code>print(pd.io.sql.get_schema(trips_df, name="yellow_taxi_data"))</code></p>
-                <p>we notice in the schema that what are meant to be timestamps are in a text format so we need to
-                    convert them into timestamp</p>
-                <p><code>trips_df.tpep_pickup_datetime = pd.to_datetime(trips_df.tpep_pickup_datetime)</code>trips_df.tpep_dropoff_datetime
-                    = pd.to_datetime(trips_df.tpep_dropoff_datetime)`</p>
-                <p>this would go above the ddl schema conversion</p>
-                <p>then we need to import sqlalchemy</p>
-                <p>then we do:
-                    `from sqlalchemy import create_engine</p>
-                <p><code>engine = create_engine('postgresql://root:root@localhost:5432/ny_taxi')</code></p>
-                <p><code>engine.connect()</code></p>
-                <p>then we edit our schema ddl code:
-                    <code>print(pd.io.sql.get_schema(trips_df, name="yellow_taxi_data", con=engine))</code>
-                </p>
-                <p>so since this is a large dataset and we are only really inserting the first 100 data points, we can
-                    do batch processing, using an iterator</p>
-                <p>we create the iterator here:
-                    <code>parquet_file = pq.ParquetFile('yellow_tripdata_2021-01.parquet')</code>df_iter =
-                    parquet_file.iter_batches(batch_size=100000)`
-                </p>
-                <p>get the first chunk:
-                    <code>df = next(df_iter).to_pandas()</code>
-                </p>
-                <p>check length:
-                    <code>len(df)</code>
-                </p>
-                <p>to make sure the data type is timestamps:
-                    <code>trips_df.tpep_pickup_datetime = pd.to_datetime(trips_df.tpep_pickup_datetime)</code>trips_df.tpep_dropoff_datetime
-                    = pd.to_datetime(trips_df.tpep_dropoff_datetime)`
-                </p>
-                <p>now we can use:
-                    <code>df.head(n=0)</code>
-                </p>
-                <p>this will show us the headers of the data set</p>
-                <p>now what we want to do is insert the table and then the data chunk by chunk</p>
-                <p>there is a function in dataframes which is called to_sql
-                    <code>trips_df.head(n=0).to_sql(name='yellow_taxi_data', con=engine, if_exists='replace')</code>
-                </p>
-                <p>the replace keyword will replace a row if its already there with the new row (it will drop the table
-                    before inserting new values)</p>
-                <p>this command inserts the tables into our postgres in docker, this was produced by Claude AI
-                    `%time df_iter = parquet_file.iter_batches(batch_size=100000)</p>
-                <p><code>for i, batch in enumerate(df_iter):</code>chunk_df = batch.to_pandas()`</p>
-                <pre><code># Convert datetime columns
-chunk_df.tpep_pickup_datetime = pd.to_datetime(chunk_df.tpep_pickup_datetime)
-chunk_df.tpep_dropoff_datetime = pd.to_datetime(chunk_df.tpep_dropoff_datetime)
+            </blockquote>
 
-print(f"Inserting chunk {i+1} with {len(chunk_df)} rows...")
+            <p>When we are in the container using pgcli, we can do:</p>
+            <p><code>\dt</code> - to list the tables in there</p>
 
-# Insert chunk
-%time chunk_df.to_sql(name='yellow_taxi_data', con=engine, if_exists='append')
+            <br>
 
-print(f"Finished inserting chunk {i+1}")
-</code></pre>
-                <p>This concludes my learning for the day!</p>
-            </div>
+            <h3>Working with Jupyter</h3>
+
+            <p>We are going to use jupyter now, to install we can do <code>pip install jupyter</code></p>
+            <p>Then we can do <code>jupyter notebook</code></p>
+
+            <br>
+
+            <blockquote>
+                <p><strong>Important:</strong> .parquet and not .csv anymore → just replace read_csv with read_parquet
+                    and remove the nrows argument</p>
+            </blockquote>
+
+            <br>
+
+            <h4>Handy Data Commands</h4>
+
+            <p>When looking at a .csv file you can look at it by using the <code>less</code> command</p>
+
+            <ul>
+                <li><code>head -n 100 xyz.csv > xyz_head.csv</code> = means get the top 100 lines and convert that into
+                    a new file</li>
+                <li><code>wc -l xyz.csv</code> = counts the amount of rows in the .csv file, the -l specifies lines</li>
+            </ul>
+
+            <br>
+
+            <h4>Dataset Information</h4>
+
+            <p><strong>The dataset:</strong><br>
+                <a
+                    href="https://d37ci6vzurychx.cloudfront.net/trip-data/yellow_tripdata_2021-01.parquet">https://d37ci6vzurychx.cloudfront.net/trip-data/yellow_tripdata_2021-01.parquet</a>
+            </p>
+
+            <p><strong>Documentation:</strong><br>
+                <a href="https://www.nyc.gov/assets/tlc/downloads/pdf/data_dictionary_trip_records_yellow.pdf">Data
+                    Dictionary for Trip Records</a>
+            </p>
+
+            <p><strong>Zone ID CSV file:</strong><br>
+                <a href="https://d37ci6vzurychx.cloudfront.net/misc/taxi_zone_lookup.csv">Taxi Zone Lookup Table</a>
+            </p>
+
+            <br>
+
+            <h3>Working with Parquet Files in Jupyter</h3>
+
+            <p>Since the file was in .parquet format and not .csv format, we had to use .parquet and work with that in
+                jupyter:</p>
+
+            <pre><code>import pandas as pd
+!pip install pyarrow
+import urllib.request
+import pyarrow.parquet as pq</code></pre>
+
+            <p>Download the file:</p>
+
+            <pre><code>url = 'https://d37ci6vzurychx.cloudfront.net/trip-data/yellow_tripdata_2021-01.parquet'
+filename = 'yellow_tripdata_2021-01.parquet'
+urllib.request.urlretrieve(url, filename)
+print("File downloaded")</code></pre>
+
+            <p>Read the parquet file:</p>
+
+            <pre><code>parquet_file = pq.ParquetFile(filename)
+trips_df = parquet_file.read(use_pandas_metadata=True).slice(0, 100).to_pandas()
+
+trips_df</code></pre>
+
+            <h3>Creating Database Schema</h3>
+
+            <p>Now we want to put this data into our postgres, and to start off we need to turn this into a schema.
+                First we make this into a data definition language (which is used for specifying schemas in SQL):</p>
+
+            <pre><code>print(pd.io.sql.get_schema(trips_df, name="yellow_taxi_data"))</code></pre>
+
+            <p>We notice in the schema that what are meant to be timestamps are in a text format so we need to convert
+                them into timestamp:</p>
+
+            <pre><code>trips_df.tpep_pickup_datetime = pd.to_datetime(trips_df.tpep_pickup_datetime)
+trips_df.tpep_dropoff_datetime = pd.to_datetime(trips_df.tpep_dropoff_datetime)</code></pre>
+
+            <p>This would go above the DDL schema conversion</p>
+
+            <br>
+
+            <h3>Connecting to PostgreSQL</h3>
+
+            <p>Then we need to import sqlalchemy:</p>
+
+            <pre><code>from sqlalchemy import create_engine
+
+engine = create_engine('postgresql://root:root@localhost:5432/ny_taxi')
+engine.connect()</code></pre>
+
+            <p>Then we edit our schema DDL code:</p>
+
+            <pre><code>print(pd.io.sql.get_schema(trips_df, name="yellow_taxi_data", con=engine))</code></pre>
+
+            <br>
+
+            <h3>Batch Processing with Iterators</h3>
+
+            <p>So since this is a large dataset and we are only really inserting the first 100 data points, we can do
+                batch processing, using an iterator.</p>
+
+            <p>We create the iterator here:</p>
+
+            <pre><code>parquet_file = pq.ParquetFile('yellow_tripdata_2021-01.parquet')
+df_iter = parquet_file.iter_batches(batch_size=100000)</code></pre>
+
+            <p>Get the first chunk:</p>
+
+            <pre><code>df = next(df_iter).to_pandas()</code></pre>
+
+            <p>Check length:</p>
+
+            <pre><code>len(df)</code></pre>
+
+            <p>To make sure the data type is timestamps:</p>
+
+            <pre><code>trips_df.tpep_pickup_datetime = pd.to_datetime(trips_df.tpep_pickup_datetime)
+trips_df.tpep_dropoff_datetime = pd.to_datetime(trips_df.tpep_dropoff_datetime)</code></pre>
+
+            <p>Now we can use:</p>
+
+            <pre><code>df.head(n=0)</code></pre>
+
+            <p>This will show us the headers of the data set</p>
+
+            <br>
+
+            <h3>Inserting Data into PostgreSQL</h3>
+
+            <p>Now what we want to do is insert the table and then the data chunk by chunk.</p>
+
+            <p>There is a function in dataframes which is called <code>to_sql</code>:</p>
+
+            <pre><code>trips_df.head(n=0).to_sql(name='yellow_taxi_data', con=engine, if_exists='replace')</code></pre>
+
+            <blockquote>
+                <p>The <strong>replace</strong> keyword will replace a row if it's already there with the new row (it
+                    will drop the table before inserting new values)</p>
+            </blockquote>
+
+            <p>This command inserts the tables into our postgres in docker. This was produced by Claude AI:</p>
+
+            <pre><code>%time df_iter = parquet_file.iter_batches(batch_size=100000)
+
+for i, batch in enumerate(df_iter):
+    chunk_df = batch.to_pandas()
+    
+    # Convert datetime columns
+    chunk_df.tpep_pickup_datetime = pd.to_datetime(chunk_df.tpep_pickup_datetime)
+    chunk_df.tpep_dropoff_datetime = pd.to_datetime(chunk_df.tpep_dropoff_datetime)
+    
+    print(f"Inserting chunk {i+1} with {len(chunk_df)} rows...")
+    
+    # Insert chunk
+    %time chunk_df.to_sql(name='yellow_taxi_data', con=engine, if_exists='append')
+    
+    print(f"Finished inserting chunk {i+1}")</code></pre>
+
+            <br>
+
+            <p><strong>This concludes my learning for the day!</strong></p>
+
         </article>
         <br> <br>
 
