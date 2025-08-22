@@ -47,390 +47,561 @@
         <br> <br>
         <!-- BLOG_POSTS_START -->
 
-            <article class="blog-post">
-                <hr>
-                <br>
-                <h2>DataTalksClub - Day 2</h2>
-                <br>
-                <p class="post-date">2025-08-22</p>
-                <br>
-                <div class="post-content">
-                    <h1>dataengineering #datatalksclub</h1>
-<h1>Conecting pgAdmin and Postgres (1.2.3)</h1>
-<p>We can quickly take a look at the data in pgcli, we can connect to the DB and do commands such as</p>
-<p><code>SELECT max(tpep_pickup_datetime), MAX(total_amount)</code>
-<code>FROM yellow_taxi_data;</code></p>
-<p>PgAdmin is a more convenient tool when looking at our DB, it is a web-based GUI sql tool.</p>
-<p>We do not need to install it, instead we can use docker to pull an image of PgAdmin.</p>
-<p>https://www.pgadmin.org/download/pgadmin-4-container/</p>
-<p>https://hub.docker.com/r/dpage/pgadmin4/</p>
-<p>to do this we can run the command</p>
-<p>docker run -it \
-    -e PGADMIN_DEFAULT_EMAIL="admin@admin.com" \
-    -e PGADMIN_DEFAULT_PASSWORD="root" \
-    -p 8080:80 \
-    dpage/pdagmin4</p>
-<p>-p 8080:80 means whatever we send to the port 8080, this will be forwarded to the port 80 on docker</p>
-<p>so then we can go to localhost:8080 on the browser and there we login and create a new server, but we cannot do that because now we need to link the two containers </p>
-<p>we can do this by using networks, first we shut down the containers, and we create a netowork by doing</p>
-<p>docker network create pg-network</p>
-<p>docker run -it \
-    -e POSTGRES_USER="root" \
-    -e POSTGRES_PASSWORD="root" \
-    -e POSTGRES_DB="ny_taxi" \
-    -v "/Users/ignasprakapas/Coding Projects/data-engineering/data-engineering-zoomcamp/01-docker-terraform/2_docker_sql/ny_taxi_postgres_data":/var/lib/postgresql/data \
-    -p 5432:5432 \
-    --network=pg-network \
-    --name pg-database \
-    postgres:13</p>
-<p>docker run -it \
-    -e PGADMIN_DEFAULT_EMAIL="admin@admin.com" \
-    -e PGADMIN_DEFAULT_PASSWORD="root" \
-    -p 8080:80 \
-    --network=pg-network \
-    --name pgadmin \
-    dpage/pgadmin4</p>
-<p>now after we run the containers agian, we can create the server and now we can refer to the postgres database as pg-database, when it comes to the host name/address</p>
-<p>![[Pasted image 20250817164215.png|500x400]]</p>
-                </div>
-            </article>
-            <br> <br>
-            
-            <article class="blog-post">
-                <hr>
-                <br>
-                <h2>Data Engineering Roadmap - Python</h2>
-                <br>
-                <p class="post-date">2025-08-22</p>
-                <br>
-                <div class="post-content">
-                    <h1>python #roadmap</h1>
-<h3>Python Fundamentals</h3>
-<h4>1.1</h4>
-<h5>Introduction</h5>
-<p>an input() function always returns a string
-you can convert it using int(), or float()</p>
-<p>example:
-age = int(age)</p>
-<h4>1.2</h4>
-<h5>Data Types</h5>
-<h1>pythondatatype</h1>
-<p>three numeric types
-- integers
-- floats
-- complex numbers</p>
-<p>strings are immutable, meaning their values cannot be changed.</p>
-<p>common string operations include concatentation, slicing, and formatting.</p>
-<p><code>str1 = "Data"</code>
-<code>str2 = "Engineering"</code>
-<code>Concatenationcombined_str = str1 + " " + str2</code>print(combined_str) # Output: Data Engineering``</p>
-<p><code>substring = combined_str[0:4]</code>
-<code>print(substring) # Output: Data</code></p>
-<p><code>formatted_string = "I am learning {}".format(combined_str)</code>
-<code>print(formatted_string) # Output: I am learning Data Engineering</code></p>
-<h5>Python's Data Structures</h5>
-<h1>pythondatastructure</h1>
-<ul>
-<li>
-<p>Lists (mutable collections of items, defined using square brackets)
-    <code>my_list = [1, 2, 3, "apple", "banana"]</code></p>
-<p><code>print(type(my_list)) # Output: &lt;class 'list'&gt;</code>
-<code>print(my_list[0])    # Output: 1 (accessing the first element)</code>
-<code>print(my_list[-1])   # Output: banana (accessing the last element)</code></p>
-<p><code>my_list.append("cherry")</code> 
-<code>print(my_list) # Output: [1, 2, 3, 'apple', 'banana', 'cherry'] # Add an element to the end</code></p>
-<p><code>my_list.insert(2, "orange")</code> 
-<code>print(my_list) # Output: [1, 2, 'orange', 3, 'apple', 'banana', 'cherry'] # Insert an element at a specific index</code></p>
-<p><code>my_list.remove("apple") # Remove a specific element</code>
-<code>print(my_list) # Output: [1, 2, 'orange', 3, 'banana', 'cherry']</code></p>
-<p><code>popped_element = my_list.pop(1) # Remove and return an element at a specific index</code>
-<code>print(my_list) # Output: [1, 'orange', 3, 'banana', 'cherry']</code>
-<code>print(popped_element) # Output: 2</code></p>
-<p><code>my_list[0] = 10  # Modify an element</code>
-<code>print(my_list) # Output: [10, 'orange', 3, 'banana', 'cherry']</code>
-- Tuples
-<code>my_list.append("cherry")  # Add an element to the end</code>
-<code>print(my_list)           # Output: [1, 2, 3, 'apple', 'banana', 'cherry']</code></p>
-<p><code>my_list.insert(2, "orange") # Insert an element at a specific index</code>
-<code>print(my_list)           # Output: [1, 2, 'orange', 3, 'apple', 'banana', 'cherry']</code></p>
-<p><code>my_list.remove("apple") # Remove a specific element</code>
-<code>print(my_list)  # Output: [1, 2, 'orange', 3, 'banana', 'cherry']</code></p>
-<p><code>popped_element = my_list.pop(1) # Remove and return an element at a specific index</code>
-<code>print(my_list)  # Output: [1, 'orange', 3, 'banana', 'cherry']</code>
-<code>print(popped_element)  # Output: 2</code></p>
-<p><code>my_list[0] = 10 # Modify an element</code>
-<code>print(my_list) # Output: [10, 'orange', 3, 'banana', 'cherry']</code>
-- Dictionaries
-<code>my_dict = {</code>
-    <code>"name": "Alice",</code>
-    <code>"age": 30,</code>
-    <code>"city": "New York"</code>
-<code>}</code></p>
-<p><code>print(type(my_dict)) # Output: &lt;class 'dict'&gt;</code>
-<code>print(my_dict["name"]) # Output: Alice (accessing a value by its key)</code>
-<code>print(my_dict.get("age"))</code>Output: 30 (another way to access a value, returns None if key doesn't exist)<code>- Sets</code>my_set = {1, 2, 3, 4, 5}<code></code>my_set2 = set([4, 5, 6, 7])`</p>
-<p><code>print(type(my_set)) # Output: &lt;class 'set'&gt;</code></p>
-<p><code>my_set.add(6)       # Add an element</code>
-<code>print(my_set)       # Output: {1, 2, 3, 4, 5, 6}</code></p>
-<p><code>my_set.remove(1)    # Remove an element</code>
-<code>print(my_set)       # Output: {2, 3, 4, 5, 6}</code></p>
-<p><code>union_set = my_set.union(my_set2) # Union of two sets</code>
-<code>print(union_set)    # Output: {2, 3, 4, 5, 6, 7}</code></p>
-<p><code>intersection_set = my_set.intersection(my_set2) # Intersection of two sets</code>
-<code>print(intersection_set) # Output: {4, 5, 6}</code></p>
-<p><code>difference_set = my_set.difference(my_set2) # Difference between two sets</code>
-<code>print(difference_set) # Output: {2, 3}</code></p>
-</li>
-</ul>
-<p>| DS          | Lists    | Tuples      | Dictionaries         | Sets        |
-| ----------- | -------- | ----------- | -------------------- | ----------- |
-| Immutable   | No       | Yes         | No                   | No          |
-| Defined     | []       | ()          | {} (key-value)       | {} or set() |
-| Performance | Standard | Fastest     | Standard             | Standard    |
-| Main Use    | Editing  | Performance | Storing &amp; Retrieving | Maths       |
-- Dictonaries are ideal for stroing config settings for data pipelines
-- The set operator can be used to quickly remove duplicate entries</p>
-<h5>If Statements</h5>
-<ul>
-<li>if</li>
-<li>elif</li>
-<li>else</li>
-</ul>
-<p>you can also do nested if statements</p>
-<p>```
-raining = Truetemperature = 15</p>
-<p>if raining:<br />
-    if temperature &lt; 10:  <br />
-        print("It's a cold and rainy day.")<br />
-    else:  <br />
-        print("It's a rainy day.") # This line will be executed</p>
-<p>else:<br />
-    print("It's not raining.")
-```</p>
-<h5>Loops</h5>
-<ul>
-<li>For Loops<ul>
-<li>are used to iterate over a sequence (list, tuple, string or range)<ul>
-<li>range(start, stop, step) is used to iterate over a certain number of times<ul>
-<li>nested for loops, are used for matrixes</li>
-<li>matrix = [ [1, 2, 3], [4, 5, 6], [7, 8, 9] ]</li>
-<li>for row in matrix: <ul>
-<li>for element in row: <ul>
-<li>print(element) # Prints each element of the matrix</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>While loops, keep looping as long as a certain condition is true</li>
-</ul>
-                </div>
-            </article>
-            <br> <br>
-            
-            <article class="blog-post">
-                <hr>
-                <br>
-                <h2>DataTalksClub - Day 1</h2>
-                <br>
-                <p class="post-date">2025-08-11</p>
-                <br>
-                <div class="post-content">
-                    <h1>dataengineering #datatalksclub</h1>
-<h1>Intro to Docker (1.2.1)</h1>
-<p>ci/cd is not covered in the course, make sure to look at this in a later date</p>
-<p>docker is useful, because
-- local experimentation
-- integration testing (CI/CD)
-- reproducibility
-- running pipelines on the cloud (AWS batch, kubernetes)
-- Spark (defining data pipelines, used to define dependencies)
-- Serverless (AWS Lambda, processing data one record at a time)</p>
-<h2>Docker Basics:</h2>
-<p><code>docker run -it ubuntu bash</code></p>
-<ul>
-<li>docker is the base command for using docker</li>
-<li>run means to execute an image </li>
-<li>-it means to run in an interactive terminal</li>
-<li>ubuntu means the name of the image we want to run</li>
-<li>bash means the command we want to execute in this image (parameter)
-running this image and deleting everything and running it again returns it to its original state because it is isolated</li>
-</ul>
-<p><code>docker run -it python:3.9</code></p>
-<ul>
-<li>python is the name of the image</li>
-<li>3.9 is the tech, otherwise known as the version</li>
-</ul>
-<p><code>docker run -it --entrypoint=bash python:3.9</code>
-in order to install modules, we can use pip install pandas, but in order to do this we need to go to a bash terminal since we cannot do this in python</p>
-<h2>Docker in VSC</h2>
-<p>when we are creating our own container we need specifications for our dockerfile, so we start with the base image</p>
-<p>in this case it would be:
-<code>FROM python:3.9</code></p>
-<p>then we can do a run command which would be 
-<code>RUN pip install pandas</code></p>
-<p>since we can only install pandas in bash and not python we do:
-<code>ENTRYPOINT [ "bash" ]</code></p>
-<p>in order to build this image from VSC, using the docker file we do:
-<code>docker build -t test:pandas .</code></p>
-<ul>
-<li>build tells docker to build the image</li>
-<li>. means to build it in the current directory</li>
-</ul>
-<p>then when that is done, you can run it by using (which will being you into the bash terminal):
-<code>docker run -it test:pandas</code></p>
-<h2>Data Pipeline</h2>
-<p>We can now create a python file (.py)</p>
-<p>we can type in:
-<code>import pandas as pd</code> 
-whatever fancy stuff it will be doing
-<code>print('yay job done')</code></p>
-<p>then in our docker file we add:
-<code>COPY pipeline.py pipeline.py</code>
-which copies the file to docker container</p>
-<p>and we can specify the work directory:
-<code>WORKDIR /app</code></p>
-<p>now you run the container, and go into the python terminal and you can do pipeline.py when you are in the working directory</p>
-<h3>Data Pipeline - Automation</h3>
-<p>to the pipeline file we add:
-<code>import sys</code>
-<code>print(sys.argv)</code>
-<code>day = sys.argv[1]</code>
-<code>print(f'job done good for day = {day}')</code></p>
-<p>then in the docker file we do:
-<code>ENTRYPOINT [ "python", "pipeline.py" ]</code></p>
-<p>you build the container, and then run it:
-<code>docker run -it test:pandas 2025-08-10</code></p>
-<p>this is how paramterise the data pipeline scripts
-<code>docker run -it test:pandas 2025-08-10 123 hello</code></p>
-<h1>Ingesting NY Taxi Data to Postgres (1.2.2)</h1>
-<h3>docker compose</h3>
-<ul>
-<li>we have environment variables, we use a -e flag for this (postgres_user/password/db)</li>
-<li>we have volumes (a way of mapping folder in host machine file system to a folder in a container), this is called mounting, we use a -v flag for this (needs a full path on window machines) ((for mac you can do in the example $(pwd)/blahblahblah))</li>
-<li>we also need to specify a port on our host machine to a port on the container (needed to send a request to the db, we use a -p for this (5432:5432)</li>
-</ul>
-<p>from the tutorial section we put the code into the terminal to run it
-<code>docker run -it \</code>
-        <code>-e POSTGRES_USER="root" \</code>
-        <code>-e POSTGRES_PASSWORD="root" \</code>
-        <code>-e POSTGRES_DB="ny_taxi" \</code>
-        <code>-v "/Users/ignasprakapas/Coding Projects/data-engineering/data-engineering-zoomcamp/01-docker-terraform/2_docker_sql/ny_taxi_postgres_data":/var/lib/postgresql/data \</code>
-        <code>-p 5432:5432 \</code>
-        <code>postgres:13</code>
-Now we want to access the database (pip install pgcli)
-<code>pgcli -h localhost -p 5432 -u root -d ny_taxi</code></p>
-<p>sometimes the port 5432 is already in use by a previous container, so on mac we do <code>sudo lsof -i -P | grep LISTEN | grep :$PORT</code> to list the ports in use and then do <code>sudo kill -9 (PID)</code></p>
-<p>when we are in the container using pgcli, we can do:
-<code>\dt</code> - to list the tables in there</p>
-<p>we are going to use jupyter now, to install we can do <code>pip install jupyter</code></p>
-<p>then we can do jupyter notebook</p>
-<p>.parquet and not .csv anymore -&gt; just replace read_csv with read_parquet and remove the nrows argument</p>
-<p>when looking at a .csv file you can look at it by using the <code>less</code> command</p>
-<p>some handy data commands
-- head -n 100 xyz.csv &gt; xyz_head.csv = means get the top 100 lines and convert that into a new file
-- wc -l xyz.csv = counts the amount of rows in the .csv file, the -l specifies lines</p>
-<p>the dataset:
-https://d37ci6vzurychx.cloudfront.net/trip-data/yellow_tripdata_2021-01.parquet</p>
-<p>for the dataset we are using they also have documentation about it:
-https://www.nyc.gov/assets/tlc/downloads/pdf/data_dictionary_trip_records_yellow.pdf</p>
-<p>there is also a zone id .csv file
-<a href="https://d37ci6vzurychx.cloudfront.net/misc/taxi_zone_lookup.csv">Taxi Zone Lookup Table</a></p>
-<p>So since the file was in .parquet file and not .csv file, we had to use .parquet and work with that in jupyter</p>
-<p><code>import pandas as pd</code>
-<code>!pip install pyarrow</code>
-<code>import urllib.request</code>
-<code>import pyarrow.parquet as pq</code></p>
-<p><code>url = 'https://d37ci6vzurychx.cloudfront.net/trip-data/yellow_tripdata_2021-01.parquet'</code>
-<code>filename = 'yellow_tripdata_2021-01.parquet'</code>
-<code>urllib.request.urlretrieve(url, filename)</code>
-<code>print("File downloaded")</code></p>
-<p><code>parquet_file = pq.ParquetFile(filename)</code>
-<code>trips_df = parquet_file.read(use_pandas_metadata=True).slice(0, 100).to_pandas()</code></p>
-<p><code>trips_df</code></p>
-<p>Now we want to put this data into our postgres, and to start off we need to turn this into a schema, first we make this into a data definition language (which is used for specifying schemas in sql)</p>
-<p><code>print(pd.io.sql.get_schema(trips_df, name="yellow_taxi_data"))</code></p>
-<p>we notice in the schema that what are meant to be timestamps are in a text format so we need to convert them into timestamp</p>
-<p><code>trips_df.tpep_pickup_datetime = pd.to_datetime(trips_df.tpep_pickup_datetime)</code>trips_df.tpep_dropoff_datetime = pd.to_datetime(trips_df.tpep_dropoff_datetime)`</p>
-<p>this would go above the ddl schema conversion</p>
-<p>then we need to import sqlalchemy</p>
-<p>then we do:
-`from sqlalchemy import create_engine</p>
-<p><code>engine = create_engine('postgresql://root:root@localhost:5432/ny_taxi')</code></p>
-<p><code>engine.connect()</code></p>
-<p>then we edit our schema ddl code:
-<code>print(pd.io.sql.get_schema(trips_df, name="yellow_taxi_data", con=engine))</code></p>
-<p>so since this is a large dataset and we are only really inserting the first 100 data points, we can do batch processing, using an iterator</p>
-<p>we create the iterator here:
-<code>parquet_file = pq.ParquetFile('yellow_tripdata_2021-01.parquet')</code>df_iter = parquet_file.iter_batches(batch_size=100000)`</p>
-<p>get the first chunk:
-<code>df = next(df_iter).to_pandas()</code></p>
-<p>check length:
-<code>len(df)</code></p>
-<p>to make sure the data type is timestamps:
-<code>trips_df.tpep_pickup_datetime = pd.to_datetime(trips_df.tpep_pickup_datetime)</code>trips_df.tpep_dropoff_datetime = pd.to_datetime(trips_df.tpep_dropoff_datetime)`</p>
-<p>now we can use:
-<code>df.head(n=0)</code></p>
-<p>this will show us the headers of the data set</p>
-<p>now what we want to do is insert the table and then the data chunk by chunk</p>
-<p>there is a function in dataframes which is called to_sql
-<code>trips_df.head(n=0).to_sql(name='yellow_taxi_data', con=engine, if_exists='replace')</code></p>
-<p>the replace keyword will replace a row if its already there with the new row (it will drop the table before inserting new values)</p>
-<p>this command inserts the tables into our postgres in docker, this was produced by Claude AI
-`%time df_iter = parquet_file.iter_batches(batch_size=100000)</p>
-<p><code>for i, batch in enumerate(df_iter):</code>chunk_df = batch.to_pandas()`</p>
-<pre><code># Convert datetime columns
-chunk_df.tpep_pickup_datetime = pd.to_datetime(chunk_df.tpep_pickup_datetime)
-chunk_df.tpep_dropoff_datetime = pd.to_datetime(chunk_df.tpep_dropoff_datetime)
+        <article class="blog-post">
+            <h1>DataTalksClub - Day 2</h1>
+            <p class="post-date">August 20, 2025</p>
+            <div class="post-tags">#dataengineering #datatalksclub</div>
 
-print(f"Inserting chunk {i+1} with {len(chunk_df)} rows...")
+            <h2>Connecting pgAdmin and Postgres (1.2.3)</h2>
 
-# Insert chunk
-%time chunk_df.to_sql(name='yellow_taxi_data', con=engine, if_exists='append')
+            <p>We can quickly take a look at the data in pgcli, we can connect to the DB and do commands such as:</p>
 
-print(f"Finished inserting chunk {i+1}")
-</code></pre>
-<p>This concludes my learning for the day!</p>
-                </div>
-            </article>
-            <br> <br>
-            
-            <article class="blog-post">
-                <hr>
-                <br>
-                <h2>defintely the final test</h2>
-                <br>
-                <p class="post-date">2025-08-09</p>
-                <br>
-                <div class="post-content">
-                    <p>oh boy
-cmon lad
-lets try a little update
-lets try another one
-maybe another one</p>
-                </div>
-            </article>
-            <br> <br>
-            
-            <article class="blog-post">
-                <hr>
-                <br>
-                <h2>Data Engineering - Day 1</h2>
-                <br>
-                <p class="post-date">2025-08-09</p>
-                <br>
-                <div class="post-content">
-                    <p>Today I start my first day of the DataTalksClub course that I will be doing on my own, without any intention of getting a certificate and purely to learn about the fundamentals of data engineering.</p>
-                </div>
-            </article>
-            <br> <br>
-            
-<!-- BLOG_POSTS_END -->
+            <pre><code>SELECT max(tpep_pickup_datetime), MAX(total_amount)
+FROM yellow_taxi_data;</code></pre>
+
+            <p>PgAdmin is a more convenient tool when looking at our DB, it is a web-based GUI SQL tool.</p>
+
+            <p>We do not need to install it, instead we can use docker to pull an image of PgAdmin.</p>
+
+            <ul>
+                <li><a href="https://www.pgadmin.org/download/pgadmin-4-container/">pgAdmin 4 Container Download</a>
+                </li>
+                <li><a href="https://hub.docker.com/r/dpage/pgadmin4/">Docker Hub - pgAdmin4</a></li>
+            </ul>
+
+            <p>To do this we can run the command:</p>
+
+            <div class="command-block">docker run -it \
+                -e PGADMIN_DEFAULT_EMAIL="admin@admin.com" \
+                -e PGADMIN_DEFAULT_PASSWORD="root" \
+                -p 8080:80 \
+                dpage/pgadmin4</div>
+
+            <p><code>-p 8080:80</code> means whatever we send to port 8080, this will be forwarded to port 80 on docker
+            </p>
+
+            <p>So then we can go to <code>localhost:8080</code> on the browser and login to create a new server, but we
+                cannot do that because now we need to link the two containers.</p>
+
+            <h3>Creating Docker Networks</h3>
+
+            <p>We can do this by using networks. First we shut down the containers, and create a network by doing:</p>
+
+            <div class="command-block">docker network create pg-network</div>
+
+            <p>Then run the containers with the network:</p>
+
+            <div class="command-block">docker run -it \
+                -e POSTGRES_USER="root" \
+                -e POSTGRES_PASSWORD="root" \
+                -e POSTGRES_DB="ny_taxi" \
+                -v "/Users/ignasprakapas/Coding
+                Projects/data-engineering/data-engineering-zoomcamp/01-docker-terraform/2_docker_sql/ny_taxi_postgres_data":/var/lib/postgresql/data
+                \
+                -p 5432:5432 \
+                --network=pg-network \
+                --name pg-database \
+                postgres:13</div>
+
+            <div class="command-block">docker run -it \
+                -e PGADMIN_DEFAULT_EMAIL="admin@admin.com" \
+                -e PGADMIN_DEFAULT_PASSWORD="root" \
+                -p 8080:80 \
+                --network=pg-network \
+                --name pgadmin \
+                dpage/pgadmin4</div>
+
+            <p>Now after we run the containers again, we can create the server and refer to the postgres database as
+                <strong>pg-database</strong> when it comes to the host name/address.
+            </p>
+        </article>
+
+        <article class="blog-post">
+            <h1>Data Engineering Roadmap - Python</h1>
+            <p class="post-date">August 18, 2025</p>
+            <div class="post-tags">#python #roadmap</div>
+
+            <h2>Python Fundamentals</h2>
+
+            <h3>1.1 Introduction</h3>
+            <p>An <code>input()</code> function always returns a string. You can convert it using <code>int()</code> or
+                <code>float()</code>.
+            </p>
+
+            <p><strong>Example:</strong></p>
+            <pre><code>age = int(input("Enter your age: "))</code></pre>
+
+            <h3>1.2 Data Types</h3>
+
+            <h4>Numeric Types</h4>
+            <p>Python has three numeric types:</p>
+            <ul>
+                <li>Integers</li>
+                <li>Floats</li>
+                <li>Complex numbers</li>
+            </ul>
+
+            <h4>Strings</h4>
+            <p>Strings are <strong>immutable</strong>, meaning their values cannot be changed. Common string operations
+                include concatenation, slicing, and formatting.</p>
+
+            <pre><code>str1 = "Data"
+str2 = "Engineering"
+
+# Concatenation
+combined_str = str1 + " " + str2
+print(combined_str)  # Output: Data Engineering
+
+# Slicing
+substring = combined_str[0:4]
+print(substring)  # Output: Data
+
+# Formatting
+formatted_string = "I am learning {}".format(combined_str)
+print(formatted_string)  # Output: I am learning Data Engineering</code></pre>
+
+            <h3>Python's Data Structures</h3>
+
+            <h4>Lists</h4>
+            <p>Mutable collections of items, defined using square brackets:</p>
+
+            <pre><code>my_list = [1, 2, 3, "apple", "banana"]
+
+print(type(my_list))  # Output: &lt;class 'list'&gt;
+print(my_list[0])     # Output: 1 (first element)
+print(my_list[-1])    # Output: banana (last element)
+
+# Add an element to the end
+my_list.append("cherry")
+print(my_list)  # Output: [1, 2, 3, 'apple', 'banana', 'cherry']
+
+# Insert an element at a specific index
+my_list.insert(2, "orange")
+print(my_list)  # Output: [1, 2, 'orange', 3, 'apple', 'banana', 'cherry']
+
+# Remove a specific element
+my_list.remove("apple")
+print(my_list)  # Output: [1, 2, 'orange', 3, 'banana', 'cherry']
+
+# Remove and return an element at a specific index
+popped_element = my_list.pop(1)
+print(my_list)        # Output: [1, 'orange', 3, 'banana', 'cherry']
+print(popped_element) # Output: 2
+
+# Modify an element
+my_list[0] = 10
+print(my_list)  # Output: [10, 'orange', 3, 'banana', 'cherry']</code></pre>
+
+            <h4>Dictionaries</h4>
+            <pre><code>my_dict = {
+    "name": "Alice",
+    "age": 30,
+    "city": "New York"
+}
+
+print(type(my_dict))      # Output: &lt;class 'dict'&gt;
+print(my_dict["name"])    # Output: Alice
+print(my_dict.get("age")) # Output: 30</code></pre>
+
+            <h4>Sets</h4>
+            <pre><code>my_set = {1, 2, 3, 4, 5}
+my_set2 = set([4, 5, 6, 7])
+
+print(type(my_set))  # Output: &lt;class 'set'&gt;
+
+my_set.add(6)        # Add an element
+print(my_set)        # Output: {1, 2, 3, 4, 5, 6}
+
+my_set.remove(1)     # Remove an element
+print(my_set)        # Output: {2, 3, 4, 5, 6}
+
+# Set operations
+union_set = my_set.union(my_set2)
+intersection_set = my_set.intersection(my_set2)
+difference_set = my_set.difference(my_set2)</code></pre>
+
+            <h4>Data Structure Comparison</h4>
+            <table>
+                <tr>
+                    <th>Data Structure</th>
+                    <th>Lists</th>
+                    <th>Tuples</th>
+                    <th>Dictionaries</th>
+                    <th>Sets</th>
+                </tr>
+                <tr>
+                    <td>Mutable</td>
+                    <td>Yes</td>
+                    <td>No</td>
+                    <td>Yes</td>
+                    <td>Yes</td>
+                </tr>
+                <tr>
+                    <td>Defined</td>
+                    <td>[]</td>
+                    <td>()</td>
+                    <td>{} (key-value)</td>
+                    <td>{} or set()</td>
+                </tr>
+                <tr>
+                    <td>Performance</td>
+                    <td>Standard</td>
+                    <td>Fastest</td>
+                    <td>Standard</td>
+                    <td>Standard</td>
+                </tr>
+                <tr>
+                    <td>Main Use</td>
+                    <td>Editing</td>
+                    <td>Performance</td>
+                    <td>Storing & Retrieving</td>
+                    <td>Math Operations</td>
+                </tr>
+            </table>
+
+            <div class="highlight">
+                <strong>Key Takeaways:</strong>
+                <ul>
+                    <li>Dictionaries are ideal for storing config settings for data pipelines</li>
+                    <li>The set operator can be used to quickly remove duplicate entries</li>
+                </ul>
+            </div>
+
+            <h3>Control Flow</h3>
+
+            <h4>If Statements</h4>
+            <ul>
+                <li><code>if</code></li>
+                <li><code>elif</code></li>
+                <li><code>else</code></li>
+            </ul>
+
+            <p>You can also do nested if statements:</p>
+
+            <pre><code>raining = True
+temperature = 15
+
+if raining:
+    if temperature &lt; 10:
+        print("It's a cold and rainy day.")
+    else:
+        print("It's a rainy day.")  # This line will be executed
+else:
+    print("It's not raining.")</code></pre>
+
+            <h4>Loops</h4>
+
+            <h5>For Loops</h5>
+            <p>Used to iterate over a sequence (list, tuple, string, or range):</p>
+            <ul>
+                <li><code>range(start, stop, step)</code> is used to iterate a certain number of times</li>
+                <li>Nested for loops are used for matrices</li>
+            </ul>
+
+            <pre><code>matrix = [[1, 2, 3], [4, 5, 6], [7, 8, 9]]
+
+for row in matrix:
+    for element in row:
+        print(element)  # Prints each element of the matrix</code></pre>
+
+            <h5>While Loops</h5>
+            <p>Keep looping as long as a certain condition is true.</p>
+        </article>
+
+        <article class="blog-post">
+            <h1>DataTalksClub - Day 1</h1>
+            <p class="post-date">August 11, 2025</p>
+            <div class="post-tags">#dataengineering #datatalksclub</div>
+
+            <h2>Intro to Docker (1.2.1)</h2>
+
+            <div class="highlight">
+                <strong>Note:</strong> CI/CD is not covered in this course, make sure to look at this at a later date.
+            </div>
+
+            <p><strong>Docker is useful because:</strong></p>
+            <ul>
+                <li>Local experimentation</li>
+                <li>Integration testing (CI/CD)</li>
+                <li>Reproducibility</li>
+                <li>Running pipelines on the cloud (AWS Batch, Kubernetes)</li>
+                <li>Spark (defining data pipelines, used to define dependencies)</li>
+                <li>Serverless (AWS Lambda, processing data one record at a time)</li>
+            </ul>
+
+            <h3>Docker Basics</h3>
+
+            <div class="command-block">docker run -it ubuntu bash</div>
+
+            <ul>
+                <li><code>docker</code> is the base command for using Docker</li>
+                <li><code>run</code> means to execute an image</li>
+                <li><code>-it</code> means to run in an interactive terminal</li>
+                <li><code>ubuntu</code> is the name of the image we want to run</li>
+                <li><code>bash</code> is the command we want to execute in this image (parameter)</li>
+            </ul>
+
+            <p>Running this image, deleting everything, and running it again returns it to its original state because it
+                is isolated.</p>
+
+            <div class="command-block">docker run -it python:3.9</div>
+
+            <ul>
+                <li><code>python</code> is the name of the image</li>
+                <li><code>3.9</code> is the tag (version)</li>
+            </ul>
+
+            <div class="command-block">docker run -it --entrypoint=bash python:3.9</div>
+
+            <p>In order to install modules, we can use <code>pip install pandas</code>, but we need to go to a bash
+                terminal since we cannot do this in Python.</p>
+
+            <h3>Docker in VS Code</h3>
+
+            <p>When creating our own container, we need specifications for our Dockerfile, starting with the base image:
+            </p>
+
+            <pre><code>FROM python:3.9</code></pre>
+
+            <p>Then we can do a run command:</p>
+
+            <pre><code>RUN pip install pandas</code></pre>
+
+            <p>Since we can only install pandas in bash and not Python:</p>
+
+            <pre><code>ENTRYPOINT [ "bash" ]</code></pre>
+
+            <p>To build this image from VS Code using the Docker file:</p>
+
+            <div class="command-block">docker build -t test:pandas .</div>
+
+            <ul>
+                <li><code>build</code> tells Docker to build the image</li>
+                <li><code>.</code> means to build it in the current directory</li>
+            </ul>
+
+            <p>Then when that is done, you can run it by using:</p>
+
+            <div class="command-block">docker run -it test:pandas</div>
+
+            <h3>Data Pipeline</h3>
+
+            <p>We can now create a Python file (.py):</p>
+
+            <pre><code>import pandas as pd
+# Whatever fancy stuff it will be doing
+print('Yay job done')</code></pre>
+
+            <p>Then in our Dockerfile we add:</p>
+
+            <pre><code>COPY pipeline.py pipeline.py</code></pre>
+
+            <p>This copies the file to the Docker container. We can also specify the work directory:</p>
+
+            <pre><code>WORKDIR /app</code></pre>
+
+            <h4>Data Pipeline - Automation</h4>
+
+            <p>To the pipeline file we add:</p>
+
+            <pre><code>import sys
+print(sys.argv)
+day = sys.argv[1]
+print(f'Job done good for day = {day}')</code></pre>
+
+            <p>Then in the Dockerfile:</p>
+
+            <pre><code>ENTRYPOINT [ "python", "pipeline.py" ]</code></pre>
+
+            <p>You build the container, and then run it:</p>
+
+            <div class="command-block">docker run -it test:pandas 2025-08-10</div>
+
+            <p>This is how to parameterize the data pipeline scripts:</p>
+
+            <div class="command-block">docker run -it test:pandas 2025-08-10 123 hello</div>
+
+            <h2>Ingesting NY Taxi Data to Postgres (1.2.2)</h2>
+
+            <h3>Docker Compose</h3>
+
+            <p>We have:</p>
+            <ul>
+                <li><strong>Environment variables:</strong> we use a <code>-e</code> flag for this
+                    (postgres_user/password/db)</li>
+                <li><strong>Volumes:</strong> a way of mapping folder in host machine file system to a folder in a
+                    container (mounting), we use a <code>-v</code> flag for this (needs full path on Windows machines)
+                </li>
+                <li><strong>Ports:</strong> we need to specify a port on our host machine to a port on the container
+                    (needed to send requests to the DB), we use a <code>-p</code> for this (5432:5432)</li>
+            </ul>
+
+            <p>From the tutorial section we put this code into the terminal to run it:</p>
+
+            <div class="command-block">docker run -it \
+                -e POSTGRES_USER="root" \
+                -e POSTGRES_PASSWORD="root" \
+                -e POSTGRES_DB="ny_taxi" \
+                -v "/Users/ignasprakapas/Coding
+                Projects/data-engineering/data-engineering-zoomcamp/01-docker-terraform/2_docker_sql/ny_taxi_postgres_data":/var/lib/postgresql/data
+                \
+                -p 5432:5432 \
+                postgres:13</div>
+
+            <p>Now we want to access the database (pip install pgcli):</p>
+
+            <div class="command-block">pgcli -h localhost -p 5432 -u root -d ny_taxi</div>
+
+            <div class="highlight">
+                <strong>Troubleshooting:</strong> Sometimes port 5432 is already in use by a previous container. On Mac:
+                <br><code>sudo lsof -i -P | grep LISTEN | grep :$PORT</code> to list ports in use
+                <br><code>sudo kill -9 (PID)</code> to kill the process
+            </div>
+
+            <p>When we are in the container using pgcli, we can do:</p>
+            <ul>
+                <li><code>\dt</code> - to list the tables</li>
+            </ul>
+
+            <p>We are going to use Jupyter now. To install: <code>pip install jupyter</code>, then run
+                <code>jupyter notebook</code>
+            </p>
+
+            <h3>Working with Data</h3>
+
+            <p>We're now working with .parquet files instead of .csv files → just replace <code>read_csv</code> with
+                <code>read_parquet</code> and remove the nrows argument.
+            </p>
+
+            <p>When looking at a .csv file you can look at it using the <code>less</code> command.</p>
+
+            <p><strong>Some handy data commands:</strong></p>
+            <ul>
+                <li><code>head -n 100 xyz.csv > xyz_head.csv</code> = get the top 100 lines and convert that into a new
+                    file</li>
+                <li><code>wc -l xyz.csv</code> = counts the number of rows in the .csv file, the -l specifies lines</li>
+            </ul>
+
+            <p><strong>Datasets used:</strong></p>
+            <ul>
+                <li><a href="https://d37ci6vzurychx.cloudfront.net/trip-data/yellow_tripdata_2021-01.parquet">Yellow
+                        Taxi Data (January 2021)</a></li>
+                <li><a href="https://www.nyc.gov/assets/tlc/downloads/pdf/data_dictionary_trip_records_yellow.pdf">Data
+                        Dictionary</a></li>
+                <li><a href="https://d37ci6vzurychx.cloudfront.net/misc/taxi_zone_lookup.csv">Taxi Zone Lookup Table</a>
+                </li>
+            </ul>
+
+            <h3>Processing the Data</h3>
+
+            <p>Since the file was in .parquet format, we had to use .parquet and work with that in Jupyter:</p>
+
+            <pre><code>import pandas as pd
+!pip install pyarrow
+import urllib.request
+import pyarrow.parquet as pq
+
+# Download the file
+url = 'https://d37ci6vzurychx.cloudfront.net/trip-data/yellow_tripdata_2021-01.parquet'
+filename = 'yellow_tripdata_2021-01.parquet'
+urllib.request.urlretrieve(url, filename)
+print("File downloaded")
+
+# Read the data
+parquet_file = pq.ParquetFile(filename)
+trips_df = parquet_file.read(use_pandas_metadata=True).slice(0, 100).to_pandas()
+
+trips_df</code></pre>
+
+            <h3>Creating Database Schema</h3>
+
+            <p>Now we want to put this data into our Postgres. We need to turn this into a schema using Data Definition
+                Language (DDL):</p>
+
+            <pre><code>print(pd.io.sql.get_schema(trips_df, name="yellow_taxi_data"))</code></pre>
+
+            <p>We notice in the schema that what are meant to be timestamps are in text format, so we need to convert
+                them:</p>
+
+            <pre><code>trips_df.tpep_pickup_datetime = pd.to_datetime(trips_df.tpep_pickup_datetime)
+trips_df.tpep_dropoff_datetime = pd.to_datetime(trips_df.tpep_dropoff_datetime)</code></pre>
+
+            <p>Then we need to import sqlalchemy:</p>
+
+            <pre><code>from sqlalchemy import create_engine
+
+engine = create_engine('postgresql://root:root@localhost:5432/ny_taxi')
+engine.connect()
+
+# Updated schema with connection
+print(pd.io.sql.get_schema(trips_df, name="yellow_taxi_data", con=engine))</code></pre>
+
+            <h3>Batch Processing</h3>
+
+            <p>Since this is a large dataset, we can do batch processing using an iterator:</p>
+
+            <pre><code># Create iterator
+parquet_file = pq.ParquetFile('yellow_tripdata_2021-01.parquet')
+df_iter = parquet_file.iter_batches(batch_size=100000)
+
+# Get first chunk
+df = next(df_iter).to_pandas()
+
+# Check length
+len(df)
+
+# Convert datetime columns
+df.tpep_pickup_datetime = pd.to_datetime(df.tpep_pickup_datetime)
+df.tpep_dropoff_datetime = pd.to_datetime(df.tpep_dropoff_datetime)
+
+# Show headers
+df.head(n=0)</code></pre>
+
+            <h3>Inserting Data</h3>
+
+            <p>Now we insert the table and then the data chunk by chunk. There is a function in dataframes called
+                <code>to_sql</code>:
+            </p>
+
+            <pre><code># Create table structure
+trips_df.head(n=0).to_sql(name='yellow_taxi_data', con=engine, if_exists='replace')
+
+# Insert data in chunks
+%time df_iter = parquet_file.iter_batches(batch_size=100000)
+
+for i, batch in enumerate(df_iter):
+    chunk_df = batch.to_pandas()
+    
+    # Convert datetime columns
+    chunk_df.tpep_pickup_datetime = pd.to_datetime(chunk_df.tpep_pickup_datetime)
+    chunk_df.tpep_dropoff_datetime = pd.to_datetime(chunk_df.tpep_dropoff_datetime)
+    
+    print(f"Inserting chunk {i+1} with {len(chunk_df)} rows...")
+    
+    # Insert chunk
+    %time chunk_df.to_sql(name='yellow_taxi_data', con=engine, if_exists='append')
+    
+    print(f"Finished inserting chunk {i+1}")</code></pre>
+
+            <p><strong>This concludes my learning for the day!</strong></p>
+        </article>
+
+        <article class="blog-post">
+            <hr>
+            <br>
+            <h2>Data Engineering - Day 1</h2>
+            <br>
+            <p class="post-date">2025-08-09</p>
+            <br>
+            <div class="post-content">
+                <p>Today I start my first day of the DataTalksClub course that I will be doing on my own, without any
+                    intention of getting a certificate and purely to learn about the fundamentals of data engineering.
+                </p>
+            </div>
+        </article>
+        <br> <br>
+
+        <!-- BLOG_POSTS_END -->
 </body>
 
 </body>
