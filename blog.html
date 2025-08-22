@@ -99,6 +99,143 @@
             <article class="blog-post">
                 <hr>
                 <br>
+                <h2>Data Engineering Roadmap - Python</h2>
+                <br>
+                <p class="post-date">2025-08-22</p>
+                <br>
+                <div class="post-content">
+                    <h1>python #roadmap</h1>
+<h3>Python Fundamentals</h3>
+<h4>1.1</h4>
+<h5>Introduction</h5>
+<p>an input() function always returns a string
+you can convert it using int(), or float()</p>
+<p>example:
+age = int(age)</p>
+<h4>1.2</h4>
+<h5>Data Types</h5>
+<h1>pythondatatype</h1>
+<p>three numeric types
+- integers
+- floats
+- complex numbers</p>
+<p>strings are immutable, meaning their values cannot be changed.</p>
+<p>common string operations include concatentation, slicing, and formatting.</p>
+<p><code>str1 = "Data"</code>
+<code>str2 = "Engineering"</code>
+<code>Concatenationcombined_str = str1 + " " + str2</code>print(combined_str) # Output: Data Engineering``</p>
+<p><code>substring = combined_str[0:4]</code>
+<code>print(substring) # Output: Data</code></p>
+<p><code>formatted_string = "I am learning {}".format(combined_str)</code>
+<code>print(formatted_string) # Output: I am learning Data Engineering</code></p>
+<h5>Python's Data Structures</h5>
+<h1>pythondatastructure</h1>
+<ul>
+<li>
+<p>Lists (mutable collections of items, defined using square brackets)
+    <code>my_list = [1, 2, 3, "apple", "banana"]</code></p>
+<p><code>print(type(my_list)) # Output: &lt;class 'list'&gt;</code>
+<code>print(my_list[0])    # Output: 1 (accessing the first element)</code>
+<code>print(my_list[-1])   # Output: banana (accessing the last element)</code></p>
+<p><code>my_list.append("cherry")</code> 
+<code>print(my_list) # Output: [1, 2, 3, 'apple', 'banana', 'cherry'] # Add an element to the end</code></p>
+<p><code>my_list.insert(2, "orange")</code> 
+<code>print(my_list) # Output: [1, 2, 'orange', 3, 'apple', 'banana', 'cherry'] # Insert an element at a specific index</code></p>
+<p><code>my_list.remove("apple") # Remove a specific element</code>
+<code>print(my_list) # Output: [1, 2, 'orange', 3, 'banana', 'cherry']</code></p>
+<p><code>popped_element = my_list.pop(1) # Remove and return an element at a specific index</code>
+<code>print(my_list) # Output: [1, 'orange', 3, 'banana', 'cherry']</code>
+<code>print(popped_element) # Output: 2</code></p>
+<p><code>my_list[0] = 10  # Modify an element</code>
+<code>print(my_list) # Output: [10, 'orange', 3, 'banana', 'cherry']</code>
+- Tuples
+<code>my_list.append("cherry")  # Add an element to the end</code>
+<code>print(my_list)           # Output: [1, 2, 3, 'apple', 'banana', 'cherry']</code></p>
+<p><code>my_list.insert(2, "orange") # Insert an element at a specific index</code>
+<code>print(my_list)           # Output: [1, 2, 'orange', 3, 'apple', 'banana', 'cherry']</code></p>
+<p><code>my_list.remove("apple") # Remove a specific element</code>
+<code>print(my_list)  # Output: [1, 2, 'orange', 3, 'banana', 'cherry']</code></p>
+<p><code>popped_element = my_list.pop(1) # Remove and return an element at a specific index</code>
+<code>print(my_list)  # Output: [1, 'orange', 3, 'banana', 'cherry']</code>
+<code>print(popped_element)  # Output: 2</code></p>
+<p><code>my_list[0] = 10 # Modify an element</code>
+<code>print(my_list) # Output: [10, 'orange', 3, 'banana', 'cherry']</code>
+- Dictionaries
+<code>my_dict = {</code>
+    <code>"name": "Alice",</code>
+    <code>"age": 30,</code>
+    <code>"city": "New York"</code>
+<code>}</code></p>
+<p><code>print(type(my_dict)) # Output: &lt;class 'dict'&gt;</code>
+<code>print(my_dict["name"]) # Output: Alice (accessing a value by its key)</code>
+<code>print(my_dict.get("age"))</code>Output: 30 (another way to access a value, returns None if key doesn't exist)<code>- Sets</code>my_set = {1, 2, 3, 4, 5}<code></code>my_set2 = set([4, 5, 6, 7])`</p>
+<p><code>print(type(my_set)) # Output: &lt;class 'set'&gt;</code></p>
+<p><code>my_set.add(6)       # Add an element</code>
+<code>print(my_set)       # Output: {1, 2, 3, 4, 5, 6}</code></p>
+<p><code>my_set.remove(1)    # Remove an element</code>
+<code>print(my_set)       # Output: {2, 3, 4, 5, 6}</code></p>
+<p><code>union_set = my_set.union(my_set2) # Union of two sets</code>
+<code>print(union_set)    # Output: {2, 3, 4, 5, 6, 7}</code></p>
+<p><code>intersection_set = my_set.intersection(my_set2) # Intersection of two sets</code>
+<code>print(intersection_set) # Output: {4, 5, 6}</code></p>
+<p><code>difference_set = my_set.difference(my_set2) # Difference between two sets</code>
+<code>print(difference_set) # Output: {2, 3}</code></p>
+</li>
+</ul>
+<p>| DS          | Lists    | Tuples      | Dictionaries         | Sets        |
+| ----------- | -------- | ----------- | -------------------- | ----------- |
+| Immutable   | No       | Yes         | No                   | No          |
+| Defined     | []       | ()          | {} (key-value)       | {} or set() |
+| Performance | Standard | Fastest     | Standard             | Standard    |
+| Main Use    | Editing  | Performance | Storing &amp; Retrieving | Maths       |
+- Dictonaries are ideal for stroing config settings for data pipelines
+- The set operator can be used to quickly remove duplicate entries</p>
+<h5>If Statements</h5>
+<ul>
+<li>if</li>
+<li>elif</li>
+<li>else</li>
+</ul>
+<p>you can also do nested if statements</p>
+<p>```
+raining = Truetemperature = 15</p>
+<p>if raining:<br />
+    if temperature &lt; 10:  <br />
+        print("It's a cold and rainy day.")<br />
+    else:  <br />
+        print("It's a rainy day.") # This line will be executed</p>
+<p>else:<br />
+    print("It's not raining.")
+```</p>
+<h5>Loops</h5>
+<ul>
+<li>For Loops<ul>
+<li>are used to iterate over a sequence (list, tuple, string or range)<ul>
+<li>range(start, stop, step) is used to iterate over a certain number of times<ul>
+<li>nested for loops, are used for matrixes</li>
+<li>matrix = [ [1, 2, 3], [4, 5, 6], [7, 8, 9] ]</li>
+<li>for row in matrix: <ul>
+<li>for element in row: <ul>
+<li>print(element) # Prints each element of the matrix</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>While loops, keep looping as long as a certain condition is true</li>
+</ul>
+                </div>
+            </article>
+            <br> <br>
+            
+            <article class="blog-post">
+                <hr>
+                <br>
                 <h2>DataTalksClub - Day 1</h2>
                 <br>
                 <p class="post-date">2025-08-11</p>
