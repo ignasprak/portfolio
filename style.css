@@ -535,6 +535,261 @@ body.dark-mode .hamburger {
     color: white;
 }
 
+/* blog */
+
+
+
+/* blog */
+
+.blog-post {
+    background: white;
+    border-radius: 8px;
+    padding: 30px;
+    margin-bottom: 30px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.blog-post h1 {
+    color: #2c3e50;
+    margin-bottom: 10px;
+    font-size: 1.8em;
+}
+
+.blog-post h2 {
+    color: #3498db;
+    margin-top: 25px;
+    margin-bottom: 15px;
+    font-size: 1.4em;
+    border-bottom: 2px solid #ecf0f1;
+    padding-bottom: 8px;
+}
+
+.blog-post h3 {
+    color: #e74c3c;
+    margin-top: 20px;
+    margin-bottom: 10px;
+    font-size: 1.2em;
+}
+
+.blog-post h4 {
+    color: #9b59b6;
+    margin-top: 15px;
+    margin-bottom: 8px;
+}
+
+.blog-post h5 {
+    color: #16a085;
+    margin-top: 15px;
+    margin-bottom: 8px;
+}
+
+.post-date {
+    color: #7f8c8d;
+    font-style: italic;
+    margin-bottom: 20px;
+    font-size: 0.9em;
+}
+
+.post-tags {
+    background: linear-gradient(45deg, #3498db, #2980b9);
+    color: white;
+    padding: 8px 15px;
+    border-radius: 20px;
+    font-size: 0.85em;
+    font-weight: 500;
+    display: inline-block;
+    margin-bottom: 20px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+code {
+    background-color: #f8f9fa;
+    border: 1px solid #e9ecef;
+    border-radius: 4px;
+    padding: 2px 6px;
+    font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
+    font-size: 0.9em;
+    color: #e74c3c;
+}
+
+pre {
+    background-color: #2c3e50;
+    color: #ecf0f1;
+    padding: 15px;
+    border-radius: 8px;
+    overflow-x: auto;
+    margin: 15px 0;
+}
+
+pre code {
+    background: none;
+    border: none;
+    padding: 0;
+    color: #ecf0f1;
+    font-size: 0.9em;
+}
+
+li {
+    margin-bottom: 8px;
+}
+
+table {
+    border-collapse: collapse;
+    width: 100%;
+    margin: 20px 0;
+    background: white;
+}
+
+th,
+td {
+    border: 1px solid #ddd;
+    padding: 12px;
+    text-align: left;
+}
+
+th {
+    background-color: #3498db;
+    color: white;
+    font-weight: 600;
+}
+
+tr:nth-child(even) {
+    background-color: #f8f9fa;
+}
+
+.command-block {
+    background-color: #2c3e50;
+    color: #ecf0f1;
+    padding: 15px;
+    border-radius: 8px;
+    font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
+    margin: 15px 0;
+    overflow-x: auto;
+}
+
+.highlight {
+    background-color: #fff3cd;
+    padding: 10px;
+    border-left: 4px solid #ffc107;
+    margin: 15px 0;
+}
+
+a {
+    color: #3498db;
+    text-decoration: none;
+}
+
+/* dark mode -> blog stuff */
+
+body.dark-mode .blog-post {
+    background-color: #2a2a2a;
+    color: #f0f0f0;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+}
+
+body.dark-mode .blog-post h1 {
+    color: #ffffff;
+}
+
+body.dark-mode .blog-post h2 {
+    color: #64b5f6;
+    border-bottom: 2px solid #444;
+}
+
+body.dark-mode .blog-post h3 {
+    color: #ef5350;
+}
+
+body.dark-mode .blog-post h4 {
+    color: #ba68c8;
+}
+
+body.dark-mode .blog-post h5 {
+    color: #4db6ac;
+}
+
+body.dark-mode .post-date {
+    color: #bbb;
+}
+
+body.dark-mode .post-tags {
+    background: linear-gradient(45deg, #1976d2, #1565c0);
+}
+
+body.dark-mode code {
+    background-color: #404040;
+    border: 1px solid #555;
+    color: #ff6b6b;
+}
+
+body.dark-mode pre {
+    background-color: #1e1e1e;
+    color: #f0f0f0;
+    border: 1px solid #333;
+}
+
+body.dark-mode pre code {
+    background: none;
+    border: none;
+    color: #f0f0f0;
+}
+
+body.dark-mode table {
+    background-color: #2a2a2a;
+    border: 1px solid #444;
+}
+
+body.dark-mode th {
+    background-color: #1976d2;
+    color: white;
+    border: 1px solid #444;
+}
+
+body.dark-mode td {
+    border: 1px solid #444;
+    color: #f0f0f0;
+}
+
+body.dark-mode tr:nth-child(even) {
+    background-color: #333;
+}
+
+body.dark-mode .command-block {
+    background-color: #1e1e1e;
+    color: #f0f0f0;
+    border: 1px solid #333;
+}
+
+body.dark-mode .highlight {
+    background-color: #3a3a2a;
+    border-left: 4px solid #ffb300;
+    color: #f0f0f0;
+}
+
+body.dark-mode .blog-post a {
+    color: #64b5f6;
+}
+
+body.dark-mode .blog-post a:hover {
+    color: #90caf9;
+    text-decoration: underline;
+}
+
+body.dark-mode .blog-post ul,
+body.dark-mode .blog-post ol {
+    color: #f0f0f0;
+}
+
+body.dark-mode .blog-post li {
+    color: #f0f0f0;
+}
+
+body.dark-mode .blog-post p {
+    color: #f0f0f0;
+}
+
+
 /* projects list */
 
 #repos {
