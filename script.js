@@ -6,7 +6,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const body = document.body;
 
     // detect best event for device
-    const tapEvent = "ontouchstart" in window ? "touchstart" : "click";
+    const tapEvent = "ontouchend" in window ? "touchend" : "click";
 
     // remember dark mode
     if (localStorage.getItem("theme") === "dark") {
@@ -14,8 +14,13 @@ document.addEventListener("DOMContentLoaded", () => {
         if (themeIcon) themeIcon.src = "media/yellow-moon.png";
     }
 
+    hamburger.addEventListener("touchstart", () => {
+        alert("Touchstart fired!");
+    });
+
     // hamburgah
-    hamburger.addEventListener(tapEvent, () => {
+    hamburger.addEventListener(tapEvent, (e) => {
+        e.preventDefault();
         navLinks.classList.toggle("show");
     });
 

@@ -381,7 +381,7 @@ footer {
     position: relative;
     top: 0rem;
     right: 1rem;
-    font-size: 20rem;
+    font-size: 2rem;
     padding: 1rem;
     background: none;
     border: none;
@@ -892,6 +892,13 @@ body.dark-mode .blog-post p {
         text-align: center;
     }
 
+    .hamburger {
+        display: block;
+        font-size: 2rem;
+        background-color: rgba(0, 0, 0, 0.001);
+        cursor: pointer;
+    }
+
 }
 
 @media (max-width: 800px) {
@@ -913,6 +920,9 @@ body.dark-mode .blog-post p {
 
     .hamburger {
         display: block;
+        font-size: 2rem;
+        background-color: rgba(0, 0, 0, 0.001);
+        cursor: pointer;
     }
 
     .nav-links {
