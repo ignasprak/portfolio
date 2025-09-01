@@ -371,17 +371,31 @@ footer {
 
 /* special */
 
+.nav-left {
+    display: flex;
+    align-items: center;
+}
+
 .hamburger {
     display: none;
-    position: absolute;
+    position: relative;
     top: 0rem;
     right: 1rem;
-    font-size: 2rem;
+    font-size: 20rem;
     padding: 1rem;
     background: none;
     border: none;
     z-index: 9999;
     color: black;
+    cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
+    background-color: transparent;
+    padding: 1rem;
+    /* adds invisible clickable space around it */
+    min-width: 44px;
+    /* Apple touch guideline */
+    min-height: 44px;
+
 }
 
 .box-in-intro {
@@ -687,6 +701,115 @@ a:hover {
     text-decoration: underline;
 }
 
+/* dark mode -> blog stuff */
+
+body.dark-mode .blog-post {
+    background-color: #2a2a2a;
+    color: #f0f0f0;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+}
+
+body.dark-mode .blog-post h1 {
+    color: #ffffff;
+}
+
+body.dark-mode .blog-post h2 {
+    color: #64b5f6;
+    border-bottom: 2px solid #444;
+}
+
+body.dark-mode .blog-post h3 {
+    color: #ef5350;
+}
+
+body.dark-mode .blog-post h4 {
+    color: #ba68c8;
+}
+
+body.dark-mode .blog-post h5 {
+    color: #4db6ac;
+}
+
+body.dark-mode .post-date {
+    color: #bbb;
+}
+
+body.dark-mode .post-tags {
+    background: linear-gradient(45deg, #1976d2, #1565c0);
+}
+
+body.dark-mode code {
+    background-color: #404040;
+    border: 1px solid #555;
+    color: #ff6b6b;
+}
+
+body.dark-mode pre {
+    background-color: #1e1e1e;
+    color: #f0f0f0;
+    border: 1px solid #333;
+}
+
+body.dark-mode pre code {
+    background: none;
+    border: none;
+    color: #f0f0f0;
+}
+
+body.dark-mode table {
+    background-color: #2a2a2a;
+    border: 1px solid #444;
+}
+
+body.dark-mode th {
+    background-color: #1976d2;
+    color: white;
+    border: 1px solid #444;
+}
+
+body.dark-mode td {
+    border: 1px solid #444;
+    color: #f0f0f0;
+}
+
+body.dark-mode tr:nth-child(even) {
+    background-color: #333;
+}
+
+body.dark-mode .command-block {
+    background-color: #1e1e1e;
+    color: #f0f0f0;
+    border: 1px solid #333;
+}
+
+body.dark-mode .highlight {
+    background-color: #3a3a2a;
+    border-left: 4px solid #ffb300;
+    color: #f0f0f0;
+}
+
+body.dark-mode .blog-post a {
+    color: #64b5f6;
+}
+
+body.dark-mode .blog-post a:hover {
+    color: #90caf9;
+    text-decoration: underline;
+}
+
+body.dark-mode .blog-post ul,
+body.dark-mode .blog-post ol {
+    color: #f0f0f0;
+}
+
+body.dark-mode .blog-post li {
+    color: #f0f0f0;
+}
+
+body.dark-mode .blog-post p {
+    color: #f0f0f0;
+}
+
 /* projects list */
 
 #repos {
@@ -738,7 +861,6 @@ a:hover {
     display: inline-block;
     margin-right: 6px;
 }
-
 
 /* screen adjustments */
 @media (max-width: 950px) {
