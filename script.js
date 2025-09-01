@@ -5,7 +5,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const themeIcon = document.getElementById("themeIcon");
     const body = document.body;
 
-    // remember dark mode
+    // rememeber dark mode
     if (localStorage.getItem("theme") === "dark") {
         body.classList.add("dark-mode");
         if (themeIcon) themeIcon.src = "media/yellow-moon.png";
@@ -30,7 +30,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const username = "ignasprak";
     const reposContainer = document.getElementById("repos");
 
-    // language colour matching
+    // language colour martching
     const languageColors = {
         JavaScript: "#f1e05a",
         HTML: "#e34c26",
