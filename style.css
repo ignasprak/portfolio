@@ -33,7 +33,6 @@ body {
     display: flex;
     height: 100%;
     list-style: none;
-    margin: 0;
 }
 
 .nav-links li {
@@ -58,7 +57,6 @@ body {
 .nav-links a:hover {
     background-color: #555;
     color: white;
-    text-decoration: none;
 }
 
 .nav-button {
@@ -181,6 +179,362 @@ hr {
     font-size: x-large;
     line-height: 45px;
 }
+
+/* technology */
+
+.tech-boxes {
+    display: flex;
+    gap: 28px;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+}
+
+.tech-item {
+    display: flex;
+    align-items: center;
+    padding: 12px 24px;
+    border-radius: 10px;
+    background: #f5f5f5;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.07);
+    font-size: 1.35rem;
+}
+
+.tech-image {
+    width: 32px;
+    height: 32px;
+    margin-right: 14px;
+}
+
+/* tech -> github */
+
+.github-button {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background-color: #f5f5f5;
+    border: 1px solid #ccc;
+    padding: 0.5rem 1rem;
+    text-decoration: none;
+    color: #333;
+    font-weight: 500;
+    font-size: large;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    text-align: center;
+    border-radius: 5px;
+}
+
+.github-button img {
+    height: 1.5rem;
+    width: auto;
+}
+
+.github-button:hover {
+    background-color: #333;
+    color: white;
+}
+
+.github-button:hover img {
+    filter: brightness(0) invert(1);
+}
+
+/* work experience - credits to Christian4423 from stack overflow for this section */
+
+.list-component {
+    border-left: 1px solid gray;
+    list-style: none;
+    margin-left: 10px;
+}
+
+.experience-wrapper {
+    display: flex;
+    gap: 2rem;
+    align-items: flex-start;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+/* WE left */
+.box-in.main-text {
+    flex: 1 1 60%;
+}
+
+/* WE right */
+.cv-panel {
+    flex: 1 1 35%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.cv-button {
+    background-color: #333;
+    color: white;
+    padding: 0.75rem 1.25rem;
+    text-decoration: none;
+    border-radius: 6px;
+    font-weight: 600;
+    transition: background-color 0.3s ease;
+    margin-right: 25vw;
+    width: 10vw;
+    text-align: center;
+}
+
+.cv-button:hover {
+    background-color: #555;
+}
+
+.cv-preview {
+    width: 100%;
+    height: 70vh;
+    margin-right: 25vw;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    margin-top: 7.5rem;
+}
+
+
+/* https://www.computerhope.com/issues/ch001705.htm */
+.list-component .__item {
+    background: url(https://www.computerhope.com/issues/pictures/bullet.gif) no-repeat top left;
+    background-position: top left;
+    padding: 0 0 4px 60px;
+    margin-left: 1em;
+    position: relative;
+    right: 67px;
+    margin-bottom: 10px;
+    top: 10px;
+}
+
+.card-component {
+    border: 1px solid gray;
+    border-radius: 5px;
+    padding: 1em;
+    max-width: 30vw;
+    min-width: 275px;
+    font-family: Arial;
+    position: relative;
+    bottom: 20px;
+}
+
+.card-component .__year {
+    padding: 0.25rem;
+    font-size: 1em;
+}
+
+.card-component .__title {
+    font-size: 1.5em;
+    padding: 0.25rem;
+}
+
+.card-component .__text {
+    color: rgb(43, 43, 43);
+    padding: 0.25rem;
+}
+
+/* projects */
+
+.project-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.project-text {
+    flex: 1 1 50%;
+    min-width: 300px;
+}
+
+.project-image img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+}
+
+.project-image {
+    flex: 1 1 42.5%;
+    display: flex;
+    justify-content: flex-end;
+}
+
+/* footer */
+
+footer {
+    background-color: lightgray;
+    margin-top: 10vh;
+    text-align: center;
+    padding: 1rem;
+    font-weight: bold;
+}
+
+/* special */
+
+.hamburger {
+    display: none;
+    position: absolute;
+    top: 0rem;
+    right: 1rem;
+    font-size: 2rem;
+    padding: 1rem;
+    background: none;
+    border: none;
+    z-index: 9999;
+    color: black;
+}
+
+.box-in-intro {
+    padding: 10%;
+    padding-top: 5%;
+    padding-bottom: 5%;
+}
+
+.box-in {
+    padding: 2.5%;
+    padding-left: 10%;
+    padding-right: 10%;
+}
+
+.dark-mode-toggle {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0.5rem;
+    border-radius: 50%;
+    transition: background-color 0.5s;
+    appearance: none;
+}
+
+.dark-mode-toggle:focus,
+.dark-mode-toggle:active {
+    outline: none;
+    box-shadow: none;
+    background: none;
+}
+
+/* special -> dark mode  */
+
+body {
+    background-color: #ffffff;
+    color: #333;
+    transition: background-color 0.5s ease, color 0.5s ease;
+}
+
+body.dark-mode {
+    background-color: #1e1e1e;
+    color: #f5f5f5;
+}
+
+.nav-menu {
+    background-color: #f0f0f0;
+}
+
+body.dark-mode .nav-menu {
+    background-color: #1e1e1e;
+}
+
+body.dark-mode .headshot {
+    width: 30vw;
+    height: auto;
+    border-radius: 8px;
+    box-shadow: 2rem 2rem 1rem rgb(38, 38, 38);
+}
+
+.dark-mode-toggle {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0.5rem;
+    border-radius: 50%;
+    transition: background-color 0.3s;
+}
+
+.dark-mode-toggle:hover {
+    background-color: rgba(0, 0, 0, 0.1);
+}
+
+.dark-mode-toggle img {
+    width: 24px;
+    height: 24px;
+    transition: opacity 0.3s;
+}
+
+body.dark-mode .box-in,
+body.dark-mode .box-in-intro {
+    background-color: #1e1e1e;
+    color: #f5f5f5;
+}
+
+body.dark-mode .card-component {
+    background-color: #2a2a2a;
+    border-color: #555;
+    color: #eee;
+}
+
+body.dark-mode .card-component .__text {
+    color: #ccc;
+}
+
+body.dark-mode .tech-item {
+    background-color: #2b2b2b;
+    color: #f0f0f0;
+    box-shadow: none;
+}
+
+body.dark-mode .github-button {
+    background-color: #2b2b2b;
+    border-color: #444;
+    color: #f0f0f0;
+}
+
+body.dark-mode .github-button:hover {
+    background-color: #555;
+    color: white;
+}
+
+body.dark-mode .cv-button {
+    background-color: #2B2B2B;
+    color: #fff;
+    border: 1px solid;
+    border-color: #444;
+    border-radius: 6px;
+}
+
+body.dark-mode .cv-button:hover {
+    background-color: #444;
+}
+
+body.dark-mode footer {
+    background-color: #1e1e1e;
+    color: #eee;
+}
+
+body.dark-mode hr {
+    border-color: #444;
+}
+
+body.dark-mode a,
+body.dark-mode h1 {
+    color: #ffffff;
+}
+
+body.dark-mode a:hover {
+    color: #fff;
+}
+
+body.dark-mode .list-component {
+    border-left: 1px solid #555;
+}
+
+body.dark-mode .__item {
+    background: none;
+}
+
+body.dark-mode .hamburger {
+    color: white;
+}
+
 
 /* blog */
 
@@ -333,474 +687,6 @@ a:hover {
     text-decoration: underline;
 }
 
-/* technology */
-
-.tech-boxes {
-    display: flex;
-    gap: 28px;
-    flex-wrap: wrap;
-    justify-content: flex-start;
-}
-
-.tech-item {
-    display: flex;
-    align-items: center;
-    padding: 12px 24px;
-    border-radius: 10px;
-    background: #f5f5f5;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.07);
-    font-size: 1.35rem;
-}
-
-.tech-image {
-    width: 32px;
-    height: 32px;
-    margin-right: 14px;
-}
-
-/* tech -> github */
-
-.github-button {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.5rem;
-    background-color: #f5f5f5;
-    border: 1px solid #ccc;
-    padding: 0.5rem 1rem;
-    text-decoration: none;
-    color: #333;
-    font-weight: 500;
-    font-size: large;
-    transition: background-color 0.3s ease, color 0.3s ease;
-    text-align: center;
-    border-radius: 5px;
-}
-
-.github-button img {
-    height: 1.5rem;
-    width: auto;
-}
-
-.github-button:hover {
-    background-color: #333;
-    color: white;
-}
-
-.github-button:hover img {
-    filter: brightness(0) invert(1);
-}
-
-/* work experience - credits to Christian4423 from stack overflow for this section */
-
-.list-component {
-    border-left: 1px solid gray;
-    list-style: none;
-    margin-left: 10px;
-}
-
-.experience-wrapper {
-    display: flex;
-    gap: 2rem;
-    align-items: flex-start;
-    justify-content: space-between;
-    flex-wrap: wrap;
-}
-
-/* WE left */
-.box-in.main-text {
-    flex: 1 1 60%;
-}
-
-/* WE right */
-.cv-panel {
-    flex: 1 1 35%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: flex-start;
-}
-
-.cv-button {
-    background-color: #333;
-    color: white;
-    padding: 0.75rem 1.25rem;
-    text-decoration: none;
-    border-radius: 6px;
-    font-weight: 600;
-    transition: background-color 0.3s ease;
-    margin-right: 25vw;
-    width: 10vw;
-    text-align: center;
-}
-
-.cv-button:hover {
-    background-color: #555;
-}
-
-.cv-preview {
-    width: 100%;
-    height: 70vh;
-    margin-right: 25vw;
-    border: 1px solid #ccc;
-    border-radius: 6px;
-    margin-top: 7.5rem;
-}
-
-
-/* https://www.computerhope.com/issues/ch001705.html */
-.list-component .__item {
-    background: url(https://www.computerhope.com/issues/pictures/bullet.gif) no-repeat top left;
-    background-position: top left;
-    padding: 0 0 4px 60px;
-    margin-left: 1em;
-    position: relative;
-    right: 67px;
-    margin-bottom: 10px;
-    top: 10px;
-}
-
-.card-component {
-    border: 1px solid gray;
-    border-radius: 5px;
-    padding: 1em;
-    max-width: 30vw;
-    min-width: 275px;
-    font-family: Arial;
-    position: relative;
-    bottom: 20px;
-}
-
-.card-component .__year {
-    padding: 0.25rem;
-    font-size: 1em;
-}
-
-.card-component .__title {
-    font-size: 1.5em;
-    padding: 0.25rem;
-}
-
-.card-component .__text {
-    color: rgb(43, 43, 43);
-    padding: 0.25rem;
-}
-
-/* projects */
-
-.project-item {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
-    gap: 20px;
-    flex-wrap: wrap;
-}
-
-.project-text {
-    flex: 1 1 50%;
-    min-width: 300px;
-}
-
-.project-image img {
-    max-width: 100%;
-    height: auto;
-    border-radius: 8px;
-}
-
-.project-image {
-    flex: 1 1 42.5%;
-    display: flex;
-    justify-content: flex-end;
-}
-
-/* footer */
-
-footer {
-    background-color: lightgray;
-    margin-top: 10vh;
-    text-align: center;
-    padding: 1rem;
-    font-weight: bold;
-}
-
-/* special */
-
-.hamburger {
-    display: none;
-    position: absolute;
-    top: 0rem;
-    right: 1rem;
-    font-size: 2rem;
-    padding: 1rem;
-    background: none;
-    border: none;
-    z-index: 9999;
-    color: black;
-}
-
-.box-in-intro {
-    padding: 10%;
-    padding-top: 5%;
-    padding-bottom: 5%;
-}
-
-.box-in {
-    padding: 2.5%;
-    padding-left: 10%;
-    padding-right: 10%;
-}
-
-.dark-mode-toggle {
-    background: none;
-    border: none;
-    cursor: pointer;
-    padding: 0.5rem;
-    border-radius: 50%;
-    transition: background-color 0.5s;
-    appearance: none;
-}
-
-.dark-mode-toggle:focus,
-.dark-mode-toggle:active {
-    outline: none;
-    box-shadow: none;
-    background: none;
-}
-
-code {
-    background-color: #c0c0c06f;
-}
-
-/* special -> dark mode  */
-
-body {
-    background-color: #ffffff;
-    color: #333;
-    transition: background-color 0.5s ease, color 0.5s ease;
-}
-
-body.dark-mode {
-    background-color: #1e1e1e;
-    color: #f5f5f5;
-}
-
-.nav-menu {
-    background-color: #f0f0f0;
-}
-
-body.dark-mode .nav-menu {
-    background-color: #1e1e1e;
-}
-
-body.dark-mode .headshot {
-    width: 30vw;
-    height: auto;
-    border-radius: 8px;
-    box-shadow: 2rem 2rem 1rem rgb(38, 38, 38);
-}
-
-.dark-mode-toggle {
-    background: none;
-    border: none;
-    cursor: pointer;
-    padding: 0.5rem;
-    border-radius: 50%;
-    transition: background-color 0.3s;
-}
-
-.dark-mode-toggle:hover {
-    background-color: rgba(0, 0, 0, 0.1);
-}
-
-.dark-mode-toggle img {
-    width: 24px;
-    height: 24px;
-    transition: opacity 0.3s;
-}
-
-body.dark-mode .box-in,
-body.dark-mode .box-in-intro {
-    background-color: #1e1e1e;
-    color: #f5f5f5;
-}
-
-body.dark-mode .card-component {
-    background-color: #2a2a2a;
-    border-color: #555;
-    color: #eee;
-}
-
-body.dark-mode .card-component .__text {
-    color: #ccc;
-}
-
-body.dark-mode .tech-item {
-    background-color: #2b2b2b;
-    color: #f0f0f0;
-    box-shadow: none;
-}
-
-body.dark-mode .github-button {
-    background-color: #2b2b2b;
-    border-color: #444;
-    color: #f0f0f0;
-}
-
-body.dark-mode .github-button:hover {
-    background-color: #555;
-    color: white;
-}
-
-body.dark-mode .cv-button {
-    background-color: #2B2B2B;
-    color: #fff;
-    border: 1px solid;
-    border-color: #444;
-    border-radius: 6px;
-}
-
-body.dark-mode .cv-button:hover {
-    background-color: #444;
-}
-
-body.dark-mode footer {
-    background-color: #1e1e1e;
-    color: #eee;
-}
-
-body.dark-mode hr {
-    border-color: #444;
-}
-
-body.dark-mode a,
-body.dark-mode h1 {
-    color: #ffffff;
-}
-
-body.dark-mode a:hover {
-    color: #fff;
-}
-
-body.dark-mode .list-component {
-    border-left: 1px solid #555;
-}
-
-body.dark-mode .__item {
-    background: none;
-}
-
-body.dark-mode .hamburger {
-    color: white;
-}
-
-/* dark mode -> blog stuff */
-
-body.dark-mode .blog-post {
-    background-color: #2a2a2a;
-    color: #f0f0f0;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
-}
-
-body.dark-mode .blog-post h1 {
-    color: #ffffff;
-}
-
-body.dark-mode .blog-post h2 {
-    color: #64b5f6;
-    border-bottom: 2px solid #444;
-}
-
-body.dark-mode .blog-post h3 {
-    color: #ef5350;
-}
-
-body.dark-mode .blog-post h4 {
-    color: #ba68c8;
-}
-
-body.dark-mode .blog-post h5 {
-    color: #4db6ac;
-}
-
-body.dark-mode .post-date {
-    color: #bbb;
-}
-
-body.dark-mode .post-tags {
-    background: linear-gradient(45deg, #1976d2, #1565c0);
-}
-
-body.dark-mode code {
-    background-color: #404040;
-    border: 1px solid #555;
-    color: #ff6b6b;
-}
-
-body.dark-mode pre {
-    background-color: #1e1e1e;
-    color: #f0f0f0;
-    border: 1px solid #333;
-}
-
-body.dark-mode pre code {
-    background: none;
-    border: none;
-    color: #f0f0f0;
-}
-
-body.dark-mode table {
-    background-color: #2a2a2a;
-    border: 1px solid #444;
-}
-
-body.dark-mode th {
-    background-color: #1976d2;
-    color: white;
-    border: 1px solid #444;
-}
-
-body.dark-mode td {
-    border: 1px solid #444;
-    color: #f0f0f0;
-}
-
-body.dark-mode tr:nth-child(even) {
-    background-color: #333;
-}
-
-body.dark-mode .command-block {
-    background-color: #1e1e1e;
-    color: #f0f0f0;
-    border: 1px solid #333;
-}
-
-body.dark-mode .highlight {
-    background-color: #3a3a2a;
-    border-left: 4px solid #ffb300;
-    color: #f0f0f0;
-}
-
-body.dark-mode .blog-post a {
-    color: #64b5f6;
-}
-
-body.dark-mode .blog-post a:hover {
-    color: #90caf9;
-    text-decoration: underline;
-}
-
-body.dark-mode .blog-post ul,
-body.dark-mode .blog-post ol {
-    color: #f0f0f0;
-}
-
-body.dark-mode .blog-post li {
-    color: #f0f0f0;
-}
-
-body.dark-mode .blog-post p {
-    color: #f0f0f0;
-}
-
 /* projects list */
 
 #repos {
@@ -905,12 +791,6 @@ body.dark-mode .blog-post p {
 
     .hamburger {
         display: block;
-        font-size: 2rem;
-        background: none;
-        border: none;
-        cursor: pointer;
-        -webkit-tap-highlight-color: transparent;
-        touch-action: manipulation;
     }
 
     .nav-links {
@@ -934,7 +814,6 @@ body.dark-mode .blog-post p {
         margin-bottom: 1rem;
     }
 
-    /* Fixed nav links styling - single consistent rule */
     .nav-links a,
     .nav-links button {
         display: block;
@@ -942,33 +821,29 @@ body.dark-mode .blog-post p {
         height: 100%;
         padding: 1rem;
         font-size: 1rem;
-        background-color: #333;
+        background-color: black;
         border: none;
         text-decoration: none;
-        color: #ffffff;
-        /* White text on dark background */
+        color: #000000;
         border-radius: 6px;
         transition: background-color 0.2s ease, color 0.2s ease;
+        background-color: #000000;
     }
 
     .nav-links a:hover,
     .nav-links button:hover {
-        background-color: #555;
-        color: white;
+        background-color: #ddd;
+        color: black;
     }
 
-    /* Dark mode nav on smaller screen */
+    /* dark mode nav on smaller screen */
+
     body.dark-mode .nav-links a,
     body.dark-mode .nav-links button {
         color: #ffffff;
         background-color: #393939;
     }
 
-    body.dark-mode .nav-links a:hover,
-    body.dark-mode .nav-links button:hover {
-        background-color: #555;
-        color: white;
-    }
 
     .flex-container {
         flex-direction: column;
@@ -1017,15 +892,73 @@ body.dark-mode .blog-post p {
         font-size: 1rem;
     }
 
+    .nav-menu {
+        flex-direction: column;
+        align-items: flex-start;
+        height: auto;
+        padding: 1rem;
+        position: relative;
+    }
+
+    .hamburger {
+        display: block;
+        font-size: 2rem;
+        background: none;
+        border: none;
+        cursor: pointer;
+    }
+
+    .nav-links {
+        display: none;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 0.5rem;
+        width: 100%;
+        margin-top: 1rem;
+    }
+
+    .nav-links.show {
+        display: flex;
+    }
+
+    .nav-links li {
+        flex: 1 1 calc(33.33% - 1rem);
+        max-width: calc(33.33% - 1rem);
+        box-sizing: border-box;
+        text-align: center;
+    }
+
+    .nav-links a,
+    .nav-links button {
+        display: block;
+        width: 100%;
+        padding: 1rem;
+        font-size: 1rem;
+        background-color: #ddd;
+        border: none;
+        text-decoration: none;
+        color: #333;
+        border-radius: 6px;
+        transition: background-color 0.2s ease;
+    }
+
+    .nav-links button {
+        padding: 0.5rem;
+    }
+
+    .nav-links a:hover,
+    .nav-links button:hover {
+        background-color: #ddd;
+    }
+
     .dark-mode-toggle img {
         width: 2rem;
         height: 2rem;
     }
 
     .github-button {
-        display: flex;
+        display: inline-flex;
         align-items: center;
-        justify-content: center;
         gap: 0.5rem;
         background-color: #f5f5f5;
         border: 1px solid #ccc;
@@ -1037,6 +970,11 @@ body.dark-mode .blog-post p {
         font-size: x-large;
         transition: background-color 0.3s ease, color 0.3s ease;
         width: 95%;
+        display: flex;
+        justify-content: center;
+        /* Horizontal */
+        align-items: center;
+        /* Vertical */
         height: 7.5vh;
     }
 
@@ -1044,4 +982,5 @@ body.dark-mode .blog-post p {
         height: 2rem;
         width: auto;
     }
+
 }
