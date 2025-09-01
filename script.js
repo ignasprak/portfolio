@@ -5,30 +5,15 @@ document.addEventListener("DOMContentLoaded", () => {
     const themeIcon = document.getElementById("themeIcon");
     const body = document.body;
 
-    // detect best event for device
-    const tapEvent = "ontouchend" in window ? "touchend" : "click";
-
     // remember dark mode
     if (localStorage.getItem("theme") === "dark") {
         body.classList.add("dark-mode");
         if (themeIcon) themeIcon.src = "media/yellow-moon.png";
     }
 
-    // hamburger
-    const toggleNav = (e) => {
-        e.preventDefault();
-        e.stopPropagation();
+    // hamburgah
+    hamburger.addEventListener("click", () => {
         navLinks.classList.toggle("show");
-    };
-
-    hamburger.addEventListener("click", toggleNav, false);
-    hamburger.addEventListener("touchend", toggleNav, false);
-
-    // close nav when tapping outside
-    document.body.addEventListener("click", (e) => {
-        if (!hamburger.contains(e.target) && !navLinks.contains(e.target)) {
-            navLinks.classList.remove("show");
-        }
     });
 
     // dark mode toggle
