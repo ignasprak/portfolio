@@ -382,6 +382,7 @@ footer {
     border: none;
     z-index: 9999;
     color: black;
+    overflow: visible;
 }
 
 .box-in-intro {
@@ -647,15 +648,14 @@ body.dark-mode .hamburger {
 
     .nav-links {
         display: none;
-        flex-wrap: wrap;
-        width: 100%;
-        margin-top: 1rem;
-        gap: 0.75rem;
-        justify-content: center;
+        flex-direction: column;
+        overflow: hidden;
+        max-height: 0;
     }
 
     .nav-links.show {
         display: flex;
+        max-height: 500px;
     }
 
     .nav-links li {
