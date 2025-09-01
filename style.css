@@ -19,7 +19,7 @@ body {
 }
 
 /* navbar */
- 
+
 .nav-menu {
     display: flex;
     justify-content: space-between;
@@ -905,6 +905,12 @@ body.dark-mode .blog-post p {
 
     .hamburger {
         display: block;
+        font-size: 2rem;
+        background: none;
+        border: none;
+        cursor: pointer;
+        -webkit-tap-highlight-color: transparent;
+        touch-action: manipulation;
     }
 
     .nav-links {
@@ -928,6 +934,7 @@ body.dark-mode .blog-post p {
         margin-bottom: 1rem;
     }
 
+    /* Fixed nav links styling - single consistent rule */
     .nav-links a,
     .nav-links button {
         display: block;
@@ -935,29 +942,33 @@ body.dark-mode .blog-post p {
         height: 100%;
         padding: 1rem;
         font-size: 1rem;
-        background-color: black;
+        background-color: #333;
         border: none;
         text-decoration: none;
-        color: #000000;
+        color: #ffffff;
+        /* White text on dark background */
         border-radius: 6px;
         transition: background-color 0.2s ease, color 0.2s ease;
-        background-color: #000000;
     }
 
     .nav-links a:hover,
     .nav-links button:hover {
-        background-color: #ddd;
-        color: black;
+        background-color: #555;
+        color: white;
     }
 
-    /* dark mode nav on smaller screen */
-
+    /* Dark mode nav on smaller screen */
     body.dark-mode .nav-links a,
     body.dark-mode .nav-links button {
         color: #ffffff;
         background-color: #393939;
     }
 
+    body.dark-mode .nav-links a:hover,
+    body.dark-mode .nav-links button:hover {
+        background-color: #555;
+        color: white;
+    }
 
     .flex-container {
         flex-direction: column;
@@ -1006,73 +1017,15 @@ body.dark-mode .blog-post p {
         font-size: 1rem;
     }
 
-    .nav-menu {
-        flex-direction: column;
-        align-items: flex-start;
-        height: auto;
-        padding: 1rem;
-        position: relative;
-    }
-
-    .hamburger {
-        display: block;
-        font-size: 2rem;
-        background: none;
-        border: none;
-        cursor: pointer;
-    }
-
-    .nav-links {
-        display: none;
-        flex-wrap: wrap;
-        justify-content: center;
-        gap: 0.5rem;
-        width: 100%;
-        margin-top: 1rem;
-    }
-
-    .nav-links.show {
-        display: flex;
-    }
-
-    .nav-links li {
-        flex: 1 1 calc(33.33% - 1rem);
-        max-width: calc(33.33% - 1rem);
-        box-sizing: border-box;
-        text-align: center;
-    }
-
-    .nav-links a,
-    .nav-links button {
-        display: block;
-        width: 100%;
-        padding: 1rem;
-        font-size: 1rem;
-        background-color: #ddd;
-        border: none;
-        text-decoration: none;
-        color: #333;
-        border-radius: 6px;
-        transition: background-color 0.2s ease;
-    }
-
-    .nav-links button {
-        padding: 0.5rem;
-    }
-
-    .nav-links a:hover,
-    .nav-links button:hover {
-        background-color: #ddd;
-    }
-
     .dark-mode-toggle img {
         width: 2rem;
         height: 2rem;
     }
 
     .github-button {
-        display: inline-flex;
+        display: flex;
         align-items: center;
+        justify-content: center;
         gap: 0.5rem;
         background-color: #f5f5f5;
         border: 1px solid #ccc;
@@ -1084,11 +1037,6 @@ body.dark-mode .blog-post p {
         font-size: x-large;
         transition: background-color 0.3s ease, color 0.3s ease;
         width: 95%;
-        display: flex;
-        justify-content: center;
-        /* Horizontal */
-        align-items: center;
-        /* Vertical */
         height: 7.5vh;
     }
 
@@ -1096,5 +1044,4 @@ body.dark-mode .blog-post p {
         height: 2rem;
         width: auto;
     }
-
 }
