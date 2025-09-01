@@ -5,6 +5,9 @@ document.addEventListener("DOMContentLoaded", () => {
     const themeIcon = document.getElementById("themeIcon");
     const body = document.body;
 
+    // detect best event for device
+    const tapEvent = "ontouchstart" in window ? "touchstart" : "click";
+
     // remember dark mode
     if (localStorage.getItem("theme") === "dark") {
         body.classList.add("dark-mode");
@@ -12,7 +15,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     // hamburgah
-    hamburger.addEventListener("click", () => {
+    hamburger.addEventListener(tapEvent, () => {
         navLinks.classList.toggle("show");
     });
 
