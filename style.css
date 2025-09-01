@@ -647,15 +647,17 @@ body.dark-mode .hamburger {
     }
 
     .nav-links {
-        display: none;
-        flex-direction: column;
-        overflow: hidden;
         max-height: 0;
+        opacity: 0;
+        overflow: visible;
+        z-index: 999;
     }
 
     .nav-links.show {
-        display: flex;
+        opacity: 1;
         max-height: 500px;
+        overflow: visible;
+
     }
 
     .nav-links li {
