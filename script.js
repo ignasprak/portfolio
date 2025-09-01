@@ -14,14 +14,21 @@ document.addEventListener("DOMContentLoaded", () => {
         if (themeIcon) themeIcon.src = "media/yellow-moon.png";
     }
 
-    hamburger.addEventListener("touchstart", () => {
-        alert("Touchstart fired!");
-    });
-
-    // hamburgah
-    hamburger.addEventListener(tapEvent, (e) => {
+    // hamburger
+    const toggleNav = (e) => {
         e.preventDefault();
+        e.stopPropagation();
         navLinks.classList.toggle("show");
+    };
+
+    hamburger.addEventListener("click", toggleNav, false);
+    hamburger.addEventListener("touchend", toggleNav, false);
+
+    // close nav when tapping outside
+    document.body.addEventListener("click", (e) => {
+        if (!hamburger.contains(e.target) && !navLinks.contains(e.target)) {
+            navLinks.classList.remove("show");
+        }
     });
 
     // dark mode toggle
